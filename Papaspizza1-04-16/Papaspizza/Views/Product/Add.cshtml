@@ -1,0 +1,228 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Product1"] = "class=" + "active selected";
+    TempData["AddProduct1"] = "visible";
+    var info = Model;
+}
+
+
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    Add Product
+                </div>
+
+                <div class="panel-body pan">
+                    @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                         <div class="form-body pal">
+                       
+                           
+                             <div class="form-group">
+                                
+                                 <div class="col-lg-6">
+                                     <label class="control-label">Choose Category :</label>
+                                     @Html.DropDownListFor(model => model.Category, ViewBag.CategoryList as SelectList, new { @class = "form-control", @required = "required", @onchange = "Show_dip();" })
+
+
+                                     <label class="control-label">Product Name:</label>
+                                     @Html.TextBoxFor(model => model.Title, new { @placeholder = "Product Name", @required = "required", @class = "form-control" })
+                                   @Html.HiddenFor(model => model.id)
+
+
+                                     <label class="control-label">Type :</label>
+                                     @Html.DropDownListFor(model => model.TypeName,
+                                new List<SelectListItem>
+                                {   new SelectListItem { Text="CHOOSE", Value="NONE"},
+                                    new SelectListItem { Text="ITEM", Value="ITEM"},
+                                    new SelectListItem { Text="CUSTOMISE", Value="CUSTOMISE"}
+                                }
+                                , new { @class = "form-control", @onchange = "Show_size();", @id = "Type" }
+                                )
+                                     <label class="control-label">Status :</label>
+                                     @Html.DropDownListFor(model => model.Status,
+                                new List<SelectListItem>
+                                {   
+                                    new SelectListItem { Text="CHOOSE", Value="NONE"},
+                                    new SelectListItem { Text="ACTIVE", Value="ACTIVE"},
+                                    new SelectListItem { Text="INACTIVE", Value="INACTIVE"}
+                                }
+                                , new { @class = "form-control" }
+                                )
+                                     
+                                   
+                                 </div>
+                                
+                                     <div class="col-lg-6">
+                                        
+                                         <label class="control-label">Product Description:</label>
+                                         @Html.TextAreaFor(model => model.Description, new { @placeholder = "", @class = "form-control" })
+
+                                         <label class="control-label">Choose Image :</label>
+                                         <input type="file" name="photos" value="select" class="btn btn-info btn-square" /><br />
+                                         <img src="@info.ImgURL" style="height:100px;width:80px" />
+                                     </div>
+                                 <div class="col-lg-6" id="Dip_id">
+                                     <label class="control-label">Choose Dip:</label>
+                                     @Html.DropDownListFor(model => model.Cus_ID,
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text="CHOOSE", Value="0"},
+                                    new SelectListItem { Text="One Portion", Value="1"},
+                                    new SelectListItem { Text="Two Portion", Value="2"}
+                                }
+                                , new { @class = "form-control" }
+                                )
+
+                                 </div>
+                                 </div>                      
+                             <div class="form-group" id="size_div">
+                                 <h3>Choose Size with Price</h3>
+                                 <div class="col-lg-8">
+                                     <div class="table-responsive" style="max-height:300px;overflow-y:auto;">
+                                         <table class="table table-condensed">
+                                             <thead>
+                                                 <tr>
+                                                     <td>
+                                                         <strong>Size</strong>
+                                                     </td>
+                                                     <td>
+                                                         <strong>Price</strong>
+                                                     </td>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 @foreach (Papaspizza.Models.Property i in ViewBag.SizeList)
+                                                 {
+                                                     int tx = 0;
+                                                     string tPrice = "1";
+                                                     foreach (Papaspizza.Models.Property j in ViewBag.selectedSizeList)
+                                                     {
+                                                         if (i.id == j.Size)
+                                                         {
+                                                             tx = 1;
+                                                             tPrice = j.Price;
+                                                         }
+                                                     }
+                                                     if (tx == 1)
+                                                     {
+                                                         <tr class="hm_top-@i.id">
+                                                             <td>
+                                                                 <label class="top_chk">
+                                                                     <input type="checkbox" data-item-id="@i.id" checked="checked" onchange="add_sizePrice()"> @i.Size
+                                                                 </label>
+                                                             </td>
+                                                             <td class="hm_top_price">
+                                                                 <input type="text" value="@tPrice" onblur="add_sizePrice()"/>
+                                                             </td>
+                                                            
+                                                         </tr>}
+                                                     else
+                                                     {
+                                                         <tr class="hm_top-@i.id">
+                                                             <td>
+                                                                 <label class="top_chk">
+                                                                     <input type="checkbox" data-item-id="@i.id" onchange="add_sizePrice()"> @i.Size
+                                                                 </label>
+                                                             </td>
+                                                             <td class="hm_top_price">
+                                                                 <input type="text" value="0" onblur="add_sizePrice()" />
+                                                             </td>
+                                                            
+                                                         </tr>}
+
+                                                 }
+                                             </tbody>
+                                         </table>
+
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <div class="col-lg-6" id="Price_id">
+                                     <label class="control-label">Price:</label>
+                                     @Html.TextBoxFor(model => model.Price, new { @placeholder = "Price", @class = "form-control" })
+
+                                 </div>
+                                 @Html.HiddenFor(model => model.Size_Price)</div>
+                             <div class="form-group">
+    <div class="col-lg-6"><button type="submit" class="btn btn-green">Submit</button> </div></div>
+</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+
+
+
+<script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+
+@section scripts{
+<link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/summernote/summernote.css">
+<script src="~/admin_assets/vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="~/admin_assets/vendors/ckeditor/ckeditor.js"></script>
+<script src="~/admin_assets/vendors/summernote/summernote.js"></script>
+<script src="~/admin_assets/js/ui-editors.js"></script>
+
+<script type="text/jscript">
+    $(document).ready(function () {
+        Show_size();
+        Show_dip();
+    });
+    function add_sizePrice() {
+        var itemPrice = "0";
+        var dID = "";
+        var menu_top_set = "";
+        $('.top_chk input[type=checkbox]').each(function () {
+            if (this.checked) {
+                dID = $(this).attr('data-item-id');
+                itemPrice = $('.hm_top-' + dID + ' .hm_top_price input[type=text]').val();
+
+               // alert(itemPrice+': Item Price; ')
+
+                menu_top_set = menu_top_set + dID + '|' + itemPrice + ',';
+            }
+        });
+        $('#Size_Price').val(menu_top_set);
+    }
+
+    function Show_size() {
+       // alert($('#Type').val());
+        if ($('#Type').val() == "CUSTOMISE") {
+            $('#size_div').hide('slow');
+            $('#Price_id').show('slow');
+        }
+        else {
+            $('#size_div').show('slow');
+            $('#Price_id').hide('slow');
+        }
+        
+    }
+    function Show_dip() {
+        // alert($('#Type').val());
+        if ($('#Category').val() == "1") {           
+            $('#Dip_id').show('slow');
+        }
+        else {          
+            $('#Dip_id').hide('slow');
+        }
+
+    }
+    </script>
+
+    }

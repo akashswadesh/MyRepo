@@ -1,0 +1,29 @@
+﻿.collaps {
+   display:none;
+}
+.longtextarea {
+    resize:vertical;
+}
+.dateingrid {
+    font-size: 11px;
+  color: rgb(10, 70, 150);
+}
+.gridlink {
+    color: rgb(29, 106, 208);
+}
+.gridlink:hover,active,focus {
+     color: rgb(138, 146, 176);
+}
+.divborderstyle {
+  
+  /*border-top: 1px solid 1px solid #D8D7D7#eeeeee*/
+ border-bottom: 1px solid #D8D7D7;
+}
+.myform-group {
+    margin-bottom:15px;
+    margin-left:-4px;
+    margin-right:-15px;
+}
+.mytextarea {
+    resize:vertical;
+}

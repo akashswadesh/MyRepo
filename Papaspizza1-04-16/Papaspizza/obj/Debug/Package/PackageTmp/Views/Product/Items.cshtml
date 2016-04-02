@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var info = Model;
+}
+
+<div class="nocontainer">
+    <div class="col-md-9">
+      <p><b>Products</b></p>
+        @foreach (Papaspizza.Models.Property i in ViewBag.ItemList)
+        {
+        <div class="shop-content" style="margin-top: 22px;">
+            <div class="shop-list">
+                <div class="grid-item2 mb30">
+                    <div class="row">
+                        <div class="arrival-overlay col-md-4">
+                            <img src="@i.ImgURL" alt="">
+                        </div>
+                        <div class="col-md-8">                         
+
+                                <div class="list-content">
+                                    <h1><a href="#">@i.Title</a> </h1>
+                                    <b>£@i.Price</b>
+                                    <p class="list-desc">@i.Description</p>
+                                   
+
+                            </div>
+                            
+
+                        </div>
+                        <div class="col-md-8"><a href="/Product/Details/@i.id" class="button-red" data-add-id="@i.id" style="color: #fff;
+    padding: 7px;
+    border-radius: 16px;">Choose your Dishes</a>
+</div>
+                        </div>
+
+                    
+                </div>
+            </div>
+        </div>} 
+
+  
+     
+        </div>
+
+
+
+    
+
+    <script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+   
+
+

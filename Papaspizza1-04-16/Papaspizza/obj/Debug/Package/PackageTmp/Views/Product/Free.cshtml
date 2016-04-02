@@ -1,0 +1,143 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "Add Special Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Free"] = "class=" + "active selected";
+    TempData["AddFree1"] = "visible";
+    var info = Model;
+}
+
+
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    Add Free Product
+                </div>
+
+                <div class="panel-body pan">
+                    @using (Html.BeginForm("Free", "Product", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        <div class="form-body pal">
+                            <div class="form-group">
+                                <div class="col-lg-6">
+                                    <label class="control-label">Product Name:</label>
+                                    @Html.TextBoxFor(model => model.Title, new { @placeholder = "Product Name", @required = "required", @class = "form-control" })
+                                    <label class="control-label">Product Description:</label>
+                                    @Html.TextAreaFor(model => model.Description, new { @placeholder = "Description", @class = "form-control" })                                   
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="control-label">Status :</label>
+                                    @Html.DropDownListFor(model => model.Status,
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text="ACTIVE", Value="ACTIVE"},
+                                    new SelectListItem { Text="INACTIVE", Value="INACTIVE"}
+                                }
+                                , new { @class = "form-control" }
+                                )
+                                    <label class="control-label">Choose Image :</label>
+                                    <input type="file" name="photos" value="select" class="btn btn-info btn-square" /><br />
+                                    <img src="@info.ImgURL" style="height:100px;width:80px" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h3>Offered Product Description</h3>
+                                <div class="col-lg-6">
+                                <label class="control-label">Choose Category :</label>
+                                @Html.DropDownListFor(model => model.Category, ViewBag.CategoryList as SelectList, new { @class = "form-control", @required = "required"})
+                                </div>
+                                <div class="col-lg-3">
+                                <label class="control-label">Pay Qty :</label>
+                                    @Html.TextBoxFor(model => model.Qty, new { @type = "number", @class = "form-control",@min="1"})
+                                                                   
+                                </div>
+                                <div class="col-lg-3">
+                                <label class="control-label">Free Qty:</label>
+                                    @Html.TextBoxFor(model => model.Item_Free, new { @type = "number", @class = "form-control",@min="1" })
+                                                                  
+                                </div></div> 
+
+                            
+
+                            <div class="form-group">
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn btn-green">Submit</button>                                 
+                                    @Html.HiddenFor(model => model.id)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/summernote/summernote.css">
+    <script src="~/admin_assets/vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/admin_assets/vendors/ckeditor/ckeditor.js"></script>
+    <script src="~/admin_assets/vendors/summernote/summernote.js"></script>
+    <script src="~/admin_assets/js/ui-editors.js"></script>
+
+    <script type="text/jscript">
+
+        //$(function () {
+        //    add_offered_Product_Property();
+        //    add_free_Product_Property();
+        //});
+
+        //function add_offered_Product_Property() {
+
+        //    var itemSize = "0";
+        //    var itemQty = "0";
+        //    var dID = "";
+        //    var menu_item_set = "";
+        //    $('.off_chk input[type=checkbox]').each(function () {
+        //        if (this.checked) {
+        //            dID = $(this).attr('data-item-id');
+        //            itemSize = $('.of_item-' + dID + ' .of_item_price #Size').val();
+        //            itemQty = $('.of_item-' + dID + ' .of_item_qty input[type=number]').val();
+        //            // alert(itemSize+': Item Size; '+itemQty+': Item Qty')
+
+        //            menu_item_set = menu_item_set + dID + ',' + itemSize + ',' + itemQty + '|';
+        //        }
+        //    });
+
+
+        //    $('#Item_Offered').val(menu_item_set);
+        //}
+        //function add_free_Product_Property() {
+
+        //    var itemSize = "0";
+        //    var itemQty = "0";
+        //    var dID = "";
+        //    var menu_item_set = "";
+        //    $('.free_chk input[type=checkbox]').each(function () {
+        //        if (this.checked) {
+        //            dID = $(this).attr('data-item-id');
+        //            itemSize = $('.fr_item-' + dID + ' .fr_item_price #Size').val();
+        //            itemQty = $('.fr_item-' + dID + ' .fr_item_qty input[type=number]').val();
+        //            // alert(itemSize+': Item Size; '+itemQty+': Item Qty')
+
+        //            menu_item_set = menu_item_set + dID + ',' + itemSize + ',' + itemQty + '|';
+        //        }
+        //    });
+
+
+        //    $('#Item_Free').val(menu_item_set);
+        //}
+
+    </script>
+}

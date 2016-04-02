@@ -1,0 +1,170 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "Add Special Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Menu"] = "class=" + "active selected";
+    TempData["Addmenu1"] = "visible";
+    var info = Model;
+}
+
+
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    Add Special Product
+                </div>
+
+                <div class="panel-body pan">
+                    @using (Html.BeginForm("Special", "Product", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        <div class="form-body pal">                           
+                            <div class="form-group">
+                                <div class="col-lg-6">
+                                    <label class="control-label">Product Name:</label>
+                                    @Html.TextBoxFor(model => model.Title, new { @placeholder = "Product Name", @required = "required", @class = "form-control" })
+                                    <label class="control-label">Product Description:</label>
+                                    @Html.TextAreaFor(model =>model.Description, new { @placeholder = "Description", @class = "form-control" })
+                                     <label class="control-label">Status :</label>
+                                    @Html.DropDownListFor(model => model.Status,
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text="ACTIVE", Value="ACTIVE"},
+                                    new SelectListItem { Text="INACTIVE", Value="INACTIVE"}
+                                }
+                                , new { @class = "form-control" }
+                                )
+
+                                 </div>
+                                    <div class="col-lg-6">
+                                        <label class="control-label">Price:</label>
+                                        @Html.TextBoxFor(model => model.Price, new { @placeholder = "Price", @class = "form-control" })
+
+
+                                        <label class="control-label">Choose Image :</label>
+                                        <input type="file" name="photos" value="select" class="btn btn-info btn-square" /><br />
+                                        <img src="@info.ImgURL" style="height:100px;width:80px" />
+                                          </div></div>                                
+
+                            <div class="form-group">
+                                <h3>Offered Product Description</h3>
+                                <div class="col-lg-8">
+                                    <div class="table-responsive" style="max-height:300px;overflow-y:auto;">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Item</strong>
+                                                    </td>
+                                                    <td>
+                                                        <strong>Size</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <strong>Qty</strong>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    @foreach (Papaspizza.Models.Property i in ViewBag.CategoryList)
+                                                    {
+                                                        int ix=0;
+                                                        string iqty="1";
+                                                        foreach (Papaspizza.Models.Property j in ViewBag.selectedCategoryList)
+                                                        {
+                                                            if(i.id==j.Category)
+                                                            {
+                                                                ix=1;
+                                                                iqty = j.Qty;
+                                                            }
+                                                        }
+                                                        if(ix==1)
+                                                        {
+                                                            <tr class="hm_item-@i.id">
+                                                                <td>
+                                                                    <label class="item_chk"><input type="checkbox" checked="checked" data-item-id="@i.id" onchange="add_Product_Property()" /> @i.Category</label>
+                                                                </td>
+                                                                <td class="hm_item_price">@Html.DropDownListFor(model => model.Size, ViewBag.SizeList as SelectList, new { @class = "form-control",@onchange="add_Product_Property()", @required = "required" })</td>
+                                                                <td class="hm_item_qty"><input type="number" min="1" value=@iqty onblur="add_Product_Property()"  /></td> </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr class="hm_item-@i.id">
+                                                            <td>
+                                                                <label class="item_chk"><input type="checkbox" data-item-id="@i.id" onchange="add_Product_Property()" /> @i.Category</label>
+                                                            </td>
+                                                            <td class="hm_item_price">@Html.DropDownListFor(model => model.Size, ViewBag.SizeList as SelectList, new { @class = "form-control", @required = "required", onchange = "add_Product_Property()" })</td>
+                                                            <td class="hm_item_qty"><input type="number" min="1" value="1" onblur="add_Product_Property()" /></td>
+                                                        </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            
+                            <div class="form-group">
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn btn-green">Submit</button>
+                                    @Html.HiddenFor(model => model.Menu_Item)                                  
+                                    @Html.HiddenFor(model => model.id)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/summernote/summernote.css">
+    <script src="~/admin_assets/vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/admin_assets/vendors/ckeditor/ckeditor.js"></script>
+    <script src="~/admin_assets/vendors/summernote/summernote.js"></script>
+    <script src="~/admin_assets/js/ui-editors.js"></script>
+
+    <script type="text/jscript">
+
+        $(function () {
+            add_Product_Property();      
+        });      
+
+        function add_Product_Property() {
+           
+            var itemSize = "0";
+            var itemQty = "0";
+            var dID = "";
+            var menu_item_set = "";
+            $('.item_chk input[type=checkbox]').each(function () {
+                if (this.checked) {
+                    dID = $(this).attr('data-item-id');
+                    itemSize = $('.hm_item-' + dID + ' .hm_item_price #Size').val();
+                    itemQty = $('.hm_item-' + dID + ' .hm_item_qty input[type=number]').val();
+                    // alert(itemSize+': Item Size; '+itemQty+': Item Qty')
+                    
+                    menu_item_set = menu_item_set + dID +','+itemSize+ ',' + itemQty + '|';
+                }
+            });
+
+           
+            $('#Menu_Item').val(menu_item_set);
+        }
+
+       
+    </script>
+}

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Cart";
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+<div class="nocontainer">
+   
+                        <div class="col-md-9">
+                            <p><b>Shopping Cart</b></p>
+                            <div class="check-details">
+                                <table class="table">
+                                    <thead>
+                                      
+                                        <tr>
+                                           
+                                            <th>Details</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="check-body">
+@foreach (Papaspizza.Models.Property i in ViewBag.menuList)
+                        {
+                                        <tr>                                           
+                                            <td><img src="@i.ImgURL" alt="" style="width:30%"><h6>@i.Title</h6>                                   
+                                            </td>
+                                            <td>£ @i.Price</td>
+                                            <td>@i.Qty</td>
+                                            <td>£ @i.Amount</td>
+                                            <td><a href="/Cart/Remove/@i.ProId"><img src="/images/delete.png" alt=""></a></td>
+                                        </tr>}
+                                        <tr>
+                                          <td></td>
+                                            <td>
+                                                <h6>Total</h6>
+                                             
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>£ @TempData["Total"]</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="coupon">                                 
+                                   
+                                 
+                                    <a href="/Cart/CheckOut" class="proceed">proceed to checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                 

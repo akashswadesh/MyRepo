@@ -1,0 +1,150 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "OrderListDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["OrderList"] = "class=" + "active selected";
+    TempData["OrderList1"] = "visible";
+    var info = Model;
+}
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="alert alert-info alert-dismissable" id="error" style="display:none;">
+    <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+    <strong id="msg"></strong>
+</div>
+
+<div class="page-content" id="divID">
+    <div id="invoice-page" class="row">
+        <div class="col-md-9">
+            <div class="panel">
+                
+                <div class="panel-body">
+                    <div class="invoice-title"><h2 style="padding-right: 24px">CartID</h2><hr /><p class="mbn text-left">Cart ID - <b>@info.CartID</b></p><p class="text-right" style="margin-bottom: -38px">@Convert.ToDateTime(@info.onDate).ToString("MMMM dd, yyyy")</p></div><div class="pull-left"><h2 class="text-green logo"><img src="~/images/logo.png" /></h2><address class="mbn">34 Molyneux Dr, Prescot L35 5DY<br><abbr title="Phone">Ph:</abbr>0151 493 9996<br><br>info@papaspizzaprescot.co.uk</address></div><div class="clearfix"></div><hr>
+                    <div class="row">
+                    <div class="col-md-6"><address><strong>Receiver To:</strong><br>@info.FullName<br>Shipping Address - @info.ShippingAddress,<br>Country - @info.Country<br><br>Post Code - @info.Page<br>Contact No - @info.ContactNo</address></div>
+
+                    <div class="col-md-6"><address><strong>Amount:</strong><br><h2 class="text-green mtn"><strong style="font-size: 23px">£ @TempData["Total"]</strong></h2><br></address><address style="margin-top: -43px; width: 100%"><strong>Order Date:</strong>@Convert.ToDateTime(@info.onDate).ToString("MMMM dd, yyyy")</address><br /><h6 style="margin-top: -40px; line-height: 16px"><b>Order Status: @info.Status</b></h6></div></div><hr>
+                    <h4 class="block-heading">Order summary</h4>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <strong>Item</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>Price</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>Quantity</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <strong>Totals</strong>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+@foreach (Papaspizza.Models.Property i in ViewBag.CartItemList)
+                            {<tr>
+                                    <td><strong>@i.TypeName</strong></td>
+                                <td></td>
+<td></td>
+                                <td></td>                                </tr>
+                                int hm = 1;
+                                foreach (Papaspizza.Models.Property J in ViewBag.CartCusList)
+                                {
+                                    if (i.InstanceID == J.InstanceID)
+                                    {
+                                        if (hm == 1)
+                                        {
+                                    <tr>
+                                        <td>@J.Title<br />
+                                        @J.SmallDesc<br />@J.DealDesc<br />@J.Message</td>
+                                        <td class="text-center">£@J.Price</td>
+                                        <td class="text-center">@J.Qty</td>
+                                        <td class="text-right">£@J.Amount<td>
+                                    </tr>
+                                        }
+                                    
+                                    else
+                                    {<tr>
+                                        <td>@J.Title<br />
+@J.SmallDesc<br />@J.DealDesc</td>
+                                        <td class="text-center">£@J.Price</td>
+                                        <td class="text-center">@J.Qty</td>
+                                        <td class="text-right">£@J.Amount<td>
+                                    </tr>} hm++;
+                                    }
+                                }}
+                              
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line text-center">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="no-line text-right"><strong>£ @TempData["Total"]</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">         
+            <button type="submit" onclick="printDiv('divID')" class="btn btn-success mrm">
+                <i class="fa fa-print"></i>&nbsp;
+                Print
+            </button>
+ @using (Html.BeginForm("StatusChange", "Cart", FormMethod.Post, new { @id = "paymentlist", @class = "form-horizontal" }))
+                                        {
+      @Html.TextBoxFor(model => model.CartID, new { @required = "required", @Style = "display:none", @class = "form-control" })
+
+                      <label style="font-size: 14px">Change Order Status:</label>
+      @Html.DropDownListFor(model => model.Status, new List<SelectListItem>
+                                   {
+                                    new SelectListItem{Text="Deliver", Value="Deliver"},
+                                    new SelectListItem{Text="Pending", Value="Pending"},
+
+
+                                   },
+                            new {  @class = "form-control" ,@style = "border:black solid 1px; padding:5px 4px 4px; width:41%" })
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Submit</button>
+
+                                        }
+          
+
+        </div>
+    </div>
+</div>
+
+<script src="/admin_assets/js/jquery-1.10.2.min.js"></script>
+<script src="/admin_assets/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+
+    <script language="javascript" type="text/javascript">
+    function printDiv(divID) {
+
+        //alert(divID);
+        var printContents = document.getElementById(divID).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+
+    }
+
+   
+</script>

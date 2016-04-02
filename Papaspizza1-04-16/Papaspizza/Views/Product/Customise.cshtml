@@ -1,0 +1,158 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Customise1"] = "class=" + "active selected";
+    TempData["Addcus1"] = "visible";
+    var info = Model;
+}
+
+
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    Add Product With Customise item
+                </div>
+
+                <div class="panel-body pan">
+                    @using (Html.BeginForm("Customise", "Product", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        <div class="form-body pal">
+
+
+                            <div class="form-group">
+
+                                <div class="col-lg-6">
+                                    <label class="control-label">Choose Product :</label>
+                                    @Html.DropDownListFor(model => model.ProductName, ViewBag.ProductList as SelectList, new { @class = "form-control", @required = "required"})
+
+
+                                    @Html.HiddenFor(model => model.id, new { @id="Pro"})
+
+                                </div>
+                                
+                            </div>
+                            <div class="form-group" id="size_div">
+                                <h3>Choose Customise Items</h3>
+                                <div class="col-lg-8">
+                                    <div class="table-responsive" style="max-height:300px;overflow-y:auto;">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Items</strong>
+                                                    </td>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (Papaspizza.Models.Property i in ViewBag.ItemList)
+                                                {
+                                                    int tx = 0;                                                   
+                                                    foreach (Papaspizza.Models.Property j in ViewBag.selectedItemList)
+                                                    {
+                                                        if (i.id == j.id)
+                                                        {
+                                                            tx = 1;                                                           
+                                                        }
+                                                    }
+                                                    if (tx == 1)
+                                                    {
+                                                        <tr class="hm_top-@i.id">
+                                                            <td>
+                                                                <label class="top_chk">
+                                                                    <input type="checkbox" data-item-id="@i.id" checked="checked" onchange="add_customise()"> @i.ProductName
+                                                                </label>
+                                                            </td>                                                        
+
+                                                        </tr>}
+                                                    else
+                                                    {
+                                                        <tr class="hm_top-@i.id">
+                                                            <td>
+                                                                <label class="top_chk">
+                                                                    <input type="checkbox" data-item-id="@i.id" onchange="add_customise()"> @i.ProductName
+                                                                </label>
+                                                            </td>
+                                                           
+                                                        </tr>}
+
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-lg-6">@Html.HiddenFor(model => model.Cus_ID)<button type="submit" class="btn btn-green">Submit</button> </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+
+@section scripts{
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/summernote/summernote.css">
+    <script src="~/admin_assets/vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/admin_assets/vendors/ckeditor/ckeditor.js"></script>
+    <script src="~/admin_assets/vendors/summernote/summernote.js"></script>
+    <script src="~/admin_assets/js/ui-editors.js"></script>
+
+    <script type="text/jscript">
+       
+        function add_customise() {
+           
+            var dID = "";
+            var pro_cus = "";
+            $('.top_chk input[type=checkbox]').each(function () {
+                if (this.checked) {
+                    dID = $(this).attr('data-item-id');
+                  
+                    //alert(dID)
+
+                    pro_cus = pro_cus + dID +',';
+                }
+            });
+            $('#Cus_ID').val(pro_cus);
+        }
+
+        function Show_size() {
+            // alert($('#Type').val());
+            if ($('#Type').val() == "CUSTOMISE") {
+                $('#size_div').hide('slow');
+                $('#Price_id').show('slow');
+            }
+            else {
+                $('#size_div').show('slow');
+                $('#Price_id').hide('slow');
+            }
+
+        }
+        //function Edit() {
+        //    var str = $('#ProductName').val();
+        //    var url = '/Product/Customise/' + str + '';
+        //    location.href = url;
+
+        // //   jQuery.get(url, function (data) { alert(url);});
+        //}
+    </script>
+}

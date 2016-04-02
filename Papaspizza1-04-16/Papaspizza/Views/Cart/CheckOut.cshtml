@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "CheckOut";
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+<div class="nocontainer">
+<div class="col-md-9">
+    <div id="accordion-container" class="checkout-accordion">
+
+
+        <h2 class="accordion-header"> BILLING INFORMATION</h2>
+        <div class="accordion-content second-row">
+           
+            <div class="row">
+                <div class="col-md-6">
+                    <label>First Name <span>*</span></label>
+                    <input type="text" id="firstname" placeholder="First Name">
+                </div>
+                <div class="col-md-6">
+                    <label>Last Name <span>*</span></label>
+                    <input type="text" id="lastname" placeholder="Last Name">
+                </div>
+            </div>
+           
+            <label>Delivery Address <span>*</span></label>
+            <input type="text" placeholder="Delivery Address" id="Daddress">
+           
+           
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Country / State</label>
+                    <input type="text" id="State" placeholder="State">
+                </div>
+                <div class="col-md-6">
+                    <label>Postcode <span>*</span></label>
+                    <input type="text" id="Postcode" placeholder="Postcode">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Email Address <span>*</span></label>
+                    <input type="text" id="email" placeholder="Email Id">
+                </div>
+                <div class="col-md-6">
+                    <label>phone <span>*</span></label>
+                    <input type="text" id="Phone" placeholder="Phone No">
+                </div>
+
+            </div>
+            <div class="coupon">
+
+
+                <a href="#" class="proceed" id="guest_btn">Checkout</a>
+            </div>
+            <form id="hiddenform" action=@TempData["actionurl"].ToString()>
+                @Html.Raw(HttpUtility.HtmlDecode(@TempData["CrtFrm"].ToString()))               
+            </form>
+        </div>
+
+    </div>
+</div>

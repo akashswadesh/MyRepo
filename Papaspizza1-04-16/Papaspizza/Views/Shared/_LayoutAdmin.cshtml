@@ -1,0 +1,174 @@
+﻿@{
+    HttpCookie loginCookie = Request.Cookies["login_cookie"];
+}
+
+@try
+{
+
+    if (loginCookie["UserType"] == "")
+    {
+        Response.Redirect("~/Account/");
+    }
+}
+catch
+{
+    Response.Redirect("~/Account/");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PapasPizza | @ViewBag.Title</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+
+    
+    <link href="~/admin_assets/css/TeamStyle.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700" />
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <!--LOADING STYLESHEET FOR PAGE-->
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/intro.js/introjs.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/calendar/zabuto_calendar.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/sco.message/sco.message.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/intro.js/introjs.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/select2/select2-madmin.css">
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/bootstrap-select/bootstrap-select.min.css">
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/multi-select/css/multi-select-madmin.css">
+    <!--Loading style vendors-->
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/animate.css/animate.css" />
+    @*<link type="text/css" rel="stylesheet" href="/admin_assets/vendors/jquery-pace/pace.css" />*@
+    @*<link type="text/css" rel="stylesheet" href="/admin_assets/vendors/iCheck/skins/all.css" />*@
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/jquery-notific8/jquery.notific8.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/bootstrap-datepicker/css/datepicker.css">
+
+    <!--Loading style-->
+    <link type="text/css" rel="stylesheet" href="/admin_assets/css/themes/style1/orange-blue.css" class="default-style" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/css/themes/style1/orange-blue.css" id="theme-change" class="style-change color-change" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/css/style-responsive.css" />
+    @*<link href="~/admin_assets/css/themes/style1/yellow-dark.css" rel="stylesheet" />*@
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/DataTables/media/css/jquery.dataTables.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/DataTables/media/css/dataTables.bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="/admin_assets/vendors/animate.css/animate.css" />
+</head>
+<body class="sidebar-colors">
+
+
+    <div>
+        <!--BEGIN BACK TO TOP-->
+        <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+        <!--END BACK TO TOP-->
+        <!--BEGIN TOPBAR-->
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="logo" href="/Admin" class="navbar-brand">
+                        <span class="fa fa-rocket"></span>
+                        <span class="logo-text">PapasPizza</span>
+                        <span style="display: none" class="logo-text-icon"><i class="fa fa-user"></i></span>
+                    </a>
+                </div>
+                <div class="topbar-main">
+                    <a id="menu-toggle" href="#" class="hidden-xs">
+                        <i class="fa fa-bars"></i>
+                    </a>
+
+                    <ul class="nav navbar navbar-top-links navbar-right mbn">
+                        
+                      
+                        <li class="dropdown topbar-user">
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                                <img src="/admin_assets/images/admin.jpg" alt="" class="img-responsive img-circle" />&nbsp;
+                                        <span class="hidden-xs">
+                                        @*   @loginCookie.Values["UserFullName"]*@
+                                        </span>&nbsp;<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user pull-right">
+                               
+                                
+                                <li><a href="/Account/Logout"><i class="fa fa-key"></i>Log Out</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!--END TOPBAR-->
+        <div id="wrapper">
+            <!--BEGIN SIDEBAR MENU-->
+
+            @Html.Partial("_PartialAdminMenu")
+
+            
+            <!--END SIDEBAR MENU-->
+            <!--BEGIN PAGE WRAPPER-->
+            <div id="page-wrapper">
+                <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb" style="padding-top: 8px;">
+                    <div class="page-header pull-left">
+                        <div class="page-title">@TempData["PageTitle"]</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--END TITLE & BREADCRUMB PAGE-->
+                @RenderBody()
+            </div>
+            <!--BEGIN FOOTER-->
+            <div id="footer">
+                <div class="copyright">
+                    Design & developed by <a href="http://gowebbi.com" target="_blank">gowebbi.com</a>
+                </div>
+            </div>
+            <!--END FOOTER-->
+            <!--END PAGE WRAPPER-->
+        </div>
+    </div>
+
+
+
+    <script src="/admin_assets/js/jquery-1.10.2.min.js"></script>
+    <script src="/admin_assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/admin_assets/js/jquery-ui.js"></script>
+    <!--loading bootstrap js-->
+    <script src="/admin_assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin_assets/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="/admin_assets/js/html5shiv.js"></script>
+    <script src="/admin_assets/js/respond.min.js"></script>
+    <script src="/admin_assets/vendors/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/admin_assets/vendors/slimScroll/jquery.slimscroll.js"></script>
+    <script src="/admin_assets/vendors/jquery-cookie/jquery.cookie.js"></script>
+    <script src="/admin_assets/vendors/iCheck/icheck.min.js"></script>
+    @*<script src="/admin_assets/vendors/iCheck/custom.min.js"></script>*@
+    <script src="/admin_assets/vendors/jquery-notific8/jquery.notific8.min.js"></script>
+    <script src="/admin_assets/vendors/jquery-highcharts/highcharts.js"></script>
+    <script src="/admin_assets/js/jquery.menu.js"></script>
+    @*<script src="/admin_assets/vendors/jquery-pace/pace.min.js"></script>*@
+    <script src="/admin_assets/vendors/holder/holder.js"></script>
+    <script src="/admin_assets/vendors/responsive-tabs/responsive-tabs.js"></script>
+    <script src="/admin_assets/vendors/jquery-news-ticker/jquery.newsTicker.min.js"></script>
+    <script src="/admin_assets/vendors/moment/moment.js"></script>
+    <script src="/admin_assets/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/admin_assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="/admin_assets/js/main.js"></script>
+    <script src="/admin_assets/vendors/select2/select2.min.js"></script>
+    <script src="/admin_assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="/admin_assets/vendors/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/admin_assets/js/ui-dropdown-select.js"></script>
+    <!--LOADING SCRIPTS FOR PAGE-->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

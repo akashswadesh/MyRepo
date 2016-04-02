@@ -1,0 +1,418 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var info = Model;
+}
+
+<div class="nocontainer">
+    <div class="col-md-9">
+        <div class="shop-content">
+            <div class="shop-list">
+                <div class="grid-item2 mb30">
+                    <div class="row">
+                        <div class="arrival-overlay col-md-4">
+                            <img src="@info.ImgURL" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <h1 style="text-align:center"><b class="hm_cart_prd_title" data-item-name="@info.Title">@info.Title</b></h1>
+                            <p style="text-align:center">
+                                <b class="hm_cart_prd_price" data-item-price="@info.Price">@info.Price</b>
+                            </p>
+                            <p style="text-align:center">
+                                <b class="hm_cart_prd_desc" data-item-desc="@info.Description">@info.Description</b>
+                            </p>
+                            <div class="col-lg-12">@Html.TextAreaFor(model => model.Message, new { @class = "form-control", @Placeholder = "Additional Information" })</div>
+                            @if (info.Price == "0.00" || info.Price == "0") { 
+                                                                <a href="javascript:add_Free_ItemstoCart();" class="button-red" style="padding: 4px 17px; color: #fff; border-radius: 7px; float: right;margin-top:9px">Add </a>
+                            }
+                            else
+                            {
+                                <a href="javascript:CheckItemsforCart();" class="button-red" style="padding: 4px 17px; color: #fff; border-radius: 7px; float: right;margin-top:9px;">Add </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @foreach (Papaspizza.Models.Property i in ViewBag.ItemList)
+        {
+            System.Data.DataView _PN = (System.Data.DataView)ViewBag.PN;
+            if (i.id == "0") { 
+                _PN.RowFilter = "Category=" + i.CatId;
+            } 
+            else {
+                _PN.RowFilter = "Category=" + i.CatId + "and SizeID=" + i.id;
+            }
+            
+
+            List<SelectListItem> Product = new List<SelectListItem>();
+            List<Papaspizza.Models.Property> Cus = new List<Papaspizza.Models.Property>();
+
+            Product.Add(new SelectListItem { Text = "-SELECT-", Value = "0" });
+            foreach (System.Data.DataRow item in _PN.ToTable().Rows)
+            {
+                Product.Add(new SelectListItem { Text = item["Title"].ToString() + " (" + item["Size"].ToString()+")", Value = item["id"].ToString() });
+            }
+
+            ViewBag.ProductNameList = new SelectList(Product, "Value", "Text");
+            System.Data.DataView _PNS = (System.Data.DataView)ViewBag.PN;
+            _PNS.RowFilter = "Category=" + i.CatId;
+
+            List<SelectListItem> ProductSize = new List<SelectListItem>();
+
+
+            ProductSize.Add(new SelectListItem { Text = "-SELECT-", Value = "0" });
+            foreach (System.Data.DataRow item in _PNS.ToTable().Rows)
+            {
+                ProductSize.Add(new SelectListItem { Text = item["Title"].ToString() + " (" + item["Size"].ToString() + ")-£" + item["Price"].ToString(), Value = item["id"].ToString() + "|" + item["SizeID"].ToString() + "|" + item["Price"].ToString() });
+            }
+
+            ViewBag.ProductList = new SelectList(ProductSize, "Value", "Text");
+            if (info.Price == "0.00" || info.Price == "0") 
+            { 
+              <div class="shop-content" style="margin-top: 22px;">
+                <div class="shop-list">
+                    <div class="grid-item2 mb30">
+                        <div class="row">
+                            <div class="list-content hx_count_select">
+                                <h1><a href="#">@i.Title</a></h1>
+                                @for (int hx = 0; hx < Convert.ToInt32(i.Qty); hx++)
+                                {
+                                    <div class="col-lg-4 hm_mb10">
+                                        <b>Item @(hx + 1)</b><br />
+                                        @Html.DropDownListFor(model => model.ProductName, ViewBag.ProductList as SelectList, new { @class = "hm_cust_item_id-" + i.id + '-' + hx, @required = "required", @onchange = "fetchProduct(this);",@Style="width:100%" })
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            else
+            {
+                <div class="shop-content" style="margin-top: 22px;">
+                    <div class="shop-list hm_cart_item" id="hm_item_block-@i.CatId">
+                        <div class="grid-item2 mb30">
+                            <div class="row">
+                                <div class="arrival-overlay col-md-4">
+                                    <img src="@i.ImgURL" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="list-content">
+                                        <h1><a href="javascript:void(0);" class="hm_cart_prd_cat_siz_qty" data-item-size="@i.Size" data-item-qty="@i.Qty" data-item-cat="@i.Title" data-item-desc="@i.Title (@i.Size - @i.Qty)">@i.Title (@i.Size - @i.Qty)</a></h1>
+                                        <div class="item_msg"></div>
+                                    </div>
+                                    <div class="list-content">
+                                        @for (int hx = 0; hx < Convert.ToInt32(i.Qty); hx++)
+                                        {
+                                            <div class="col-lg-4 hm_mb10">
+                                                <b>Item @(hx + 1)</b><br />
+                                                @Html.DropDownListFor(model => model.ProductName, ViewBag.ProductNameList as SelectList, new { @class = "set_id-" +(hx + 1)+i.id, @required = "required", @onchange = "fetchCustom(this);", @Style = "Width:100%;margin-bottom:13px" })<br />
+                                                <a href="javascript:void()" class="button-green add-cart" id="Custom_@(hx + 1)@i.id" onclick="toppins(@(hx+1)@i.id);" style="display:none;padding: 7px;border-radius: 9px;">Customise @(hx + 1)</a>
+                                            </div>
+                                        }
+                                    </div>
+                                    
+                                </div>
+                            </div>
+@for (int hx = 0; hx < Convert.ToInt32(i.Qty); hx++)
+                                        {
+                            <div id="toppingslist_@(hx+1)@i.id" class="_pizzatopp" style="display:none">
+                                <div class="shop-content" style="margin-top: 22px;" id="productpricelist">
+                                    <div class="shop-list">
+                                        <div class="row">
+                                            <a class="pull-right " onclick="closeme(@(hx+1)@i.id)"><i style="font-size: 25px;margin: -6px 8px;" class="fa fa-times-circle"></i></a>
+                                            <div class="col-md-12">
+                                                @foreach (Papaspizza.Models.Property j in ViewBag.CustomiseList)
+                                                {
+                                                    <div class="col-md-2"><input class="topinscheck_@i.id" type="checkbox" id="@j.id" data-item-price="@j.Price" data-item-name="@j.Title" /> @j.Title</div>
+                                                }
+                                            </div>
+
+                                            @*<a href="javascript:void()" class="medium-button button-green pull-right" style="margin: 0 15px;" onclick="toppins(@i.id);">Add</a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>}
+                        </div>
+                    </div>
+            </div>
+                
+            }
+        }
+        <hr />
+        <div id="selected_itemList"></div>
+        
+    </div>
+
+    
+    <div id="toppingslist" style="display:none;">
+        <div class="shop-content" style="margin-top: 22px;">
+            <div class="shop-list">
+                <div class="row">
+                    <a class="pull-right close_hx" data-prt-id="" onclick="closemeF(this)"><i style="font-size: 25px;margin: -6px 8px;" class="fa fa-times-circle"></i></a>
+                    <div class="col-md-12">
+                        @foreach (Papaspizza.Models.Property j in ViewBag.CustomiseList)
+                        {
+                            <div class="col-md-2"><input class="topinscheck" type="checkbox" id="@j.id" data-item-price="@j.Price" data-item-name="@j.Title" /> @j.Title</div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+@section scripts{
+    <script type="text/jscript">
+    function fetchProduct(t) {
+        var itemData = $(t).val();
+        var itemArray = itemData.split('|');
+        var Size = itemArray[1];
+        var htmlStr = "";
+        var fritemID = $(t).attr('class');
+        $('#' + fritemID).remove();
+        $.get('/Product/ChoosenProduct/', { ID: itemArray[0], Size: Size }, function (data) {
+            //alert(data);
+            var items = data.split("^");
+            //$("#ProName").text(items[1]);
+            //$("#img1").attr('src', items[2]);
+            //$("#Desc").text(items[3]);
+            //$("#getprice").text('£' + items[4]);
+            // alert('£' + items[4]);
+            htmlStr = '<div class="shop-content hx_item_block" style="margin-top: 22px;" id="' + fritemID + '">' +
+                        '<div class="shop-list">' +
+                            '<div class="grid-item2 mb30">' +
+                                '<div class="row">' +
+                                    '<div class="arrival-overlay col-md-4">' +
+                                        '<img src="' + items[2] + '"/>' +
+                                    '</div>' +
+                                    '<div class="col-md-8">' +
+                                        '<div class="list-content">' +
+                                            '<h1 id="ProName" class="free_set_item_name" data-item-name="' + items[1] + '" data-item-size="' + items[5] + '">' + items[1] + '</h1>' +
+                                            '<p id="Desc" class="free_set_item_desc" data-item-desc="' + items[3] + '">' + items[3] + '</p>' +
+                                            '<h4 id="getprice" class="free_set_item_price" data-item-price="' + items[4] + '">£ ' + items[4] + '</h4>' +
+                                        '</div>' +
+
+                                    '</div>' +
+                                    '   <a href="javascript:void()" class="button-green add-cart" id="CustomF_' + fritemID.replace('hm_cust_item_id-', '') + '" onclick="hm_toppins(this);" style="padding: 7px;border-radius: 9px;">Customise</a>' +
+                                '</div>' +
+                                '<div id="hm_toppins-' + fritemID.replace('hm_cust_item_id-','') + '"></div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+            $('#selected_itemList').append(htmlStr);
+            
+        });
+
+    }
+    function fetchCustom(t) {
+        var itemData = $(t).val();
+        var set_class = $(t).attr('class');
+        var set_id = set_class.replace('set_id-', '');
+        $.get('/Product/CustomProduct/', { ID: itemData }, function (data) {
+            // alert(data);
+            if (data == "Customise") {
+                $('#Custom_' + set_id).css('display', 'inline');
+            }
+            else {
+                if ($('#Custom_' + set_id).css('display', 'none')) {
+                    $('#Custom_' + set_id).css('display', 'none');
+                }
+                else {
+                    $('#Custom_' + set_id).css('display', 'inline');
+                }
+            }
+        });
+    }
+    function toppins(id) {
+        //alert(id);
+        $('._pizzatopp').hide('slow');
+        $('#toppingslist_' + id).show('slow');
+    }
+    function closeme(id) {
+        $('#toppingslist_' + id).hide('slow');
+    }
+
+    function hm_toppins(t) {
+        var itid = $(t).attr('id');
+        itid = itid.replace('CustomF_', '');
+
+        $('#hm_toppins-' + itid).html($('#toppingslist').html());
+
+        $('#hm_toppins-' + itid + ' .close_hx').attr('data-prt-id', 'hm_toppins-' + itid);
+    }
+
+    function closemeF(t) {
+        var hm_x = $(t).attr('data-prt-id');
+        $('#' + hm_x).html('');
+    }
+
+    function add_Free_ItemstoCart() {
+        var d = new Date();
+        var GID = d.getTime();
+        $('#selected_itemList .hx_item_block').each(function () {
+            var menu_top_set = "";
+            var property = {};
+            var item_setID = $(this).attr('id');
+            property.DealDesc = $('.hm_cart_prd_desc').attr('data-item-desc');
+            property.Description = $('#' + item_setID + ' .free_set_item_desc').attr('data-item-desc');
+            property.Qty = "1";  
+            property.Message =$('#Message').val();
+            property.Price = $('#' + item_setID + ' .free_set_item_price').attr('data-item-price');
+            property.Size = $('#' + item_setID + ' .free_set_item_name').attr('data-item-size');
+            property.ProductName = $('#' + item_setID + ' .free_set_item_name').attr('data-item-name');
+            property.TypeName = "FREE SET";
+            $('#' + item_setID + ' input[type=checkbox]').each(function () {
+                if ($(this).prop('checked') && $(this).is(':disabled') == false) {
+                    var name = $(this).attr("data-item-name");
+                    var price = $(this).attr("data-item-price");
+                    menu_top_set = menu_top_set + name + '|' + price + ',';
+                }
+                // alert(menu_top_set);
+            });
+            property.Item_Offered = menu_top_set;
+            property.InstanceID = GID;
+            $.ajax({
+                url: '/Cart/addtoCart',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({ prop: property }),
+                cache: false,
+                success: function (result) {
+                    //alert(result);
+                    //window.location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error:' + thrownError);
+                }
+            });
+        });
+
+        check_free_item(GID);
+    }
+
+    function check_free_item(GID) {
+        var item_qty = $(".hx_count_select select").length;
+        $.get('/Cart/check_free_item/', { id: GID, Qty: item_qty }, function (data) {
+            if (data == "DONE") {
+                alert("Successfully Add To Cart!");
+                window.location.reload();
+            }
+            else {
+                alert("Please check again");
+            }
+        });
+    }
+
+    function CheckItemsforCart() {       
+        var CheckStatus = "0";
+        $('.hm_cart_item').each(function () {
+            var CheckStatus11 = "0";           
+            var item_setID = $(this).attr('id');
+            $('#' + item_setID + ' select').each(function () {
+                if ($(this).val() == "0")
+                {
+                    CheckStatus = "1";
+                    CheckStatus11 = "1";
+                }
+            });
+            if (CheckStatus11 == "1") {
+                $('#' + item_setID + ' .item_msg').html('Please Select Item.');
+            } else {
+                $('#' + item_setID + ' .item_msg').html('');
+            }
+
+        });
+        if (CheckStatus == "0") {          
+            addItemstoCart();
+        }
+    }
+    function addItemstoCart() {
+        var d = new Date();
+        var GID = d.getTime();
+            var menu_top_set = "";
+            var property = {};
+            property.ProductName = $('.hm_cart_prd_title').attr('data-item-name');
+            property.Description = $('.hm_cart_prd_desc').attr('data-item-desc');
+            property.Qty = "1";
+            property.Size = "Deal";
+            property.Message =$('#Message').val();
+            property.Price = $('.hm_cart_prd_price').attr('data-item-price');
+            property.Item_Offered = menu_top_set;
+            property.InstanceID = GID;
+            property.TypeName = "DEAL";
+            $.ajax({
+                url: '/Cart/addtoCart',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({ prop: property }),
+                cache: false,
+                success: function (result) {                    
+                    //alert(result);
+                    //window.location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error:' + thrownError);
+                }
+            });
+            get_multi_itemLoop(GID);
+    }
+
+    function get_multi_itemLoop(GID)
+    {
+        $('.hm_cart_item').each(function (){
+            var menu_top_set = "";
+            var property = {};
+            var item_setID = $(this).attr('id');
+            //alert(item_setID);
+            property.Description = $('#' + item_setID + ' .hm_cart_prd_cat_siz_qty').attr('data-item-desc');
+            property.Qty = "1";
+            property.Price = "0.00";
+            property.Size = $('#' + item_setID + ' .hm_cart_prd_cat_siz_qty').attr('data-item-size');
+            property.ProductName = "";
+            $('#' + item_setID + ' select').each(function () {
+                property.ProductName = property.ProductName + $(this).find('option:selected').text() + "|";       
+               
+            });
+          
+            $('#' + item_setID + ' input[type=checkbox]').each(function () {
+                if ($(this).prop('checked') && $(this).is(':disabled') == false) {
+                    var name = $(this).attr("data-item-name");
+                    var price = $(this).attr("data-item-price");                    
+                    menu_top_set = menu_top_set + name + '|' + price + ',';
+                }
+               // alert(menu_top_set);
+            });
+            property.Item_Offered = menu_top_set;
+            property.InstanceID = GID;
+            $.ajax({
+                url: '/Cart/addtoCart_combo',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({ prop: property }),
+                cache: false,
+                success: function (result) {
+                    //alert(result);
+                    //window.location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error:' + thrownError);
+                }
+            });
+        });
+        window.location.reload();
+        
+    }
+    </script>
+}

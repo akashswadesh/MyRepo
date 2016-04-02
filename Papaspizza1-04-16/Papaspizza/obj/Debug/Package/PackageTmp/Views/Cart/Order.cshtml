@@ -1,0 +1,94 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["OrderList"] = "class=" + "active selected";
+    TempData["OrderList1"] = "visible";
+    var info = Model;
+}
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="alert alert-info alert-dismissable" id="error" style="display:none;">
+    <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+    <strong id="msg"></strong>
+</div>
+<div class="page-content">    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet box panel panel-green">
+                <div class="panel-heading">
+                    Order List
+                </div>
+                <div class="portlet-body">
+                    <div class="row mbm">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table id="table_id1" class="table table-hover table-striped table-bordered tablesorter">
+                                    <thead>
+                                        <tr>
+                                            <th>Cart</th>
+                                            <th>Name</th>
+                                            <th>Email ID</th>
+                                            <th>Phone</th>
+                                            <th>PaymentStatus</th>
+                                            <th>Date</th>  
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Papaspizza.Models.Property i in ViewBag.CartList)
+                                        {
+                                            <tr>
+
+                                                <td>
+                                                   
+                                                    <a href="/Cart/OrderDetails/@i.CartID" class="btn btn-warning btn-md">
+                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                       Cart Details
+                                                    </a>
+                                                       
+                                                </td>
+                                             
+                                                <td>@i.FullName</td>
+                                                <td>@i.EmailID</td>
+                                                <td>@i.ContactNo</td>
+                                                <td>@i.Status</td>
+                                                <td>@i.onDate</td>
+
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section scripts{
+    <script src="/admin_assets/vendors/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="/admin_assets/vendors/DataTables/media/js/dataTables.bootstrap.js"></script>
+    <script src="/admin_assets/vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/admin_assets/js/table-datatables.js"></script>
+    @*<link href="/MainSiteAssets/css/validationEngine.jquery.css" rel="stylesheet" />
+        <script src="/MainSiteAssets/js/jquery.validationEngine-en.js" type="text/javascript"></script>
+        <script src="/MainSiteAssets/js/jquery.validationEngine.js" type="text/javascript"></script>*@
+
+
+   
+}
+@*<script src="/admin_assets/js/jquery-1.10.2.min.js"></script>*@

@@ -1,0 +1,146 @@
+﻿@model Papaspizza.Models.Property
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Papaspizza.Models.Property> SSize = new List<Papaspizza.Models.Property>();
+}
+
+<div class="nocontainer">
+    <div class="col-md-9">
+        <p><b>@TempData["Category"]</b></p>
+       
+        @foreach (Papaspizza.Models.Property i in ViewBag.ProductList)
+        {
+           
+                                      
+                                        System.Data.DataView _DV = (System.Data.DataView)ViewBag.DV;
+                                        _DV.RowFilter = "ProID=" + i.id;
+
+                                        System.Data.DataView _CUST = (System.Data.DataView)ViewBag.CB;
+                                        _CUST.RowFilter = "ProID=" + i.id;
+
+                                        List<SelectListItem> Size = new List<SelectListItem>();
+                                        List<Papaspizza.Models.Property> Cus = new List<Papaspizza.Models.Property>();
+            
+                                        Size.Add(new SelectListItem { Text = "-SELECT-", Value = "0" });
+                                        foreach (System.Data.DataRow item in _DV.ToTable().Rows)
+                                        {
+                                            Size.Add(new SelectListItem { Text = item["Size"].ToString() + " " + "£" + item["Price"].ToString(), Value = item["Size"].ToString() + "|" + item["Price"].ToString() });
+                                        }
+
+                                        ViewBag.SizeList = new SelectList(Size, "Value", "Text");
+
+                                        foreach (System.Data.DataRow item in _CUST.ToTable().Rows)
+                                        {
+                                            Papaspizza.Models.Property p = new Papaspizza.Models.Property();
+                                            p.id = item["CusID"].ToString();                                          
+
+                                            Cus.Add(p);
+                                        }
+                                        ViewBag.CustomiseSelectedList = Cus;                                 
+                                        
+                
+                
+                
+            
+           
+            <div class="shop-content_@i.id" style="margin-top: 22px;">
+                <div class="shop-list">
+                    <div class="grid-item2 mb30">
+                        <div class="row">
+                            <div class="arrival-overlay col-md-4">
+                                <img src="@i.ImgURL" alt="">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="col-md-7">
+                                    <div class="list-content">
+                                        <h1><a href="#">@i.Title</a> </h1>                                       
+                                        <p class="list-desc">@i.Description</p> 
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div style="margin-bottom:15px">
+                                        <a href="#" class="button-red add-cart addtocart" style="color: #fff;padding: 6px;border-radius: 8px;" data-add-id="@i.id">Add</a>
+                                        <input id="pid_@i.id" type="text" value="@i.id" style="display:none" />
+                                        <input id="Prdname_@i.id" type="text" value="@i.Title" style="display:none" />                                       
+                                        <input id="Desc_@i.id" type="text" value="@i.Description" style="display:none" /></div><div>
+                                        @if (TempData["Category"].ToString() == "Starters" || TempData["Category"].ToString() == "Salads" || TempData["Category"].ToString() == "Desserts" || TempData["Category"].ToString() == "Drinks" || TempData["Category"].ToString() == "Meals") { }
+else
+{
+    <a href="javascript:void()" class="button-green add-cart" style="padding: 3px; border-radius: 7px;" onclick="toppins(@i.id);">Customise</a>}
+                                                </div>                      
+                                </div>
+                                <div class="col-lg-12 SL_Size_@i.id">Size:
+@Html.DropDownListFor(model => model.Size, ViewBag.SizeList as SelectList, new { @class = "form-control",@required = "required",})</div>
+
+                                @if (TempData["Category"].ToString() == "Starters")
+                                {int cu=Convert.ToInt32(i.Cus_ID);
+                                    cu=2*cu;
+                                    if (cu>0)
+                                    {
+                                        for (int hx = 0; hx < cu; hx++)
+                                        { <div class="col-lg-6">Dip @(hx + 1):
+                                @Html.DropDownListFor(model => model.Cus_ID, ViewBag.DipList as SelectList, new { @class = "form-control dip-select", @required = "required", })</div> }
+                                    }
+                                  
+                                }
+                                <div class="col-lg-12">Quantity:<br /><input type="number" value="1" id="Qty_@i.id"/></div>
+                                <div class="col-lg-12 Com_@i.id">Additional Information:<br />@Html.TextAreaFor(model => model.Message, new { @class = "form-control" })</div>
+                            </div>     
+                        </div>
+                        <div id="toppingslist_@i.id" class="_pizzatopp" style="display:none">
+                            <div class="shop-content" style="margin-top: 22px;" id="productpricelist">
+                                <div class="shop-list">                                  
+                                        <div class="row">
+                                            <a class="pull-right " onclick="closeme(@i.id)" ><i style="font-size: 25px;margin: -6px 8px;" class="fa fa-times-circle"></i></a>
+                                            <div class="col-md-12">
+                                                @foreach (Papaspizza.Models.Property j in ViewBag.CustomiseList)
+                                                {
+                                                    int tx = 0;
+                                                    foreach (Papaspizza.Models.Property p in ViewBag.CustomiseSelectedList)
+                                                    {
+                                                        if (j.id == p.id)
+                                                        {
+                                                            tx = 1;                                                           
+                                                        }
+                                                    }
+                                                    if (tx == 1)
+                                                    {
+                                                <div class="col-md-2"><label><input class="topinscheck_@i.id" type="checkbox"  id="@j.id" checked="checked" disabled="disabled" /> @j.Title</label></div>}
+                                                    else
+                                                    {
+                                                        <div class="col-md-2"><input class="topinscheck_@i.id" type="checkbox" data-item-price="@j.Price" data-item-name="@j.Title" id="@j.id" /> @j.Title</div>}
+                                                }
+                                               
+                                            </div>
+                                          
+                                            @*<a href="javascript:void()" class="medium-button button-green pull-right" style="margin: 0 15px;" onclick="toppins(@i.id);">Add</a>*@
+                                        </div>                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        }
+       
+    </div>
+    <script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+    @section scripts{
+        <script>
+            function toppins(id) {
+                $('._pizzatopp').hide('slow');
+                $('#toppingslist_' + id).show('slow');
+            }
+            function closeme(id) {                
+                $('#toppingslist_' + id).hide('slow');
+            }
+         
+            
+        </script>
+    }
+
+
+

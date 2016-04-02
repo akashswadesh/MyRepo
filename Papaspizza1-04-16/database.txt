@@ -1,0 +1,2953 @@
+//=========Some Changes==========
+USE [PapasPizza]
+GO
+ALTER TABLE [dbo].[Tbl_Registration] DROP CONSTRAINT [DF_Tbl_Registration_OnDate]
+GO
+ALTER TABLE [dbo].[tbl_Product] DROP CONSTRAINT [DF_tbl_Product_OnDate]
+GO
+ALTER TABLE [dbo].[tbl_Menu] DROP CONSTRAINT [DF_tbl_Menu_OnDate]
+GO
+ALTER TABLE [dbo].[Tbl_Fr_Product] DROP CONSTRAINT [DF_Tbl_Fr_Product_onDate]
+GO
+ALTER TABLE [dbo].[tbl_Cart] DROP CONSTRAINT [DF_tbl_Cart_OnDate]
+GO
+ALTER TABLE [dbo].[tbl_Cart] DROP CONSTRAINT [DF_tbl_Cart_PaymentStatus]
+GO
+ALTER TABLE [dbo].[tbl_Cart] DROP CONSTRAINT [DF_tbl_Cart_OrderStatus]
+GO
+ALTER TABLE [dbo].[tbl_Cart] DROP CONSTRAINT [DF_tbl_Cart_Qty]
+GO
+/****** Object:  Table [dbo].[tbl_Size]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Size]
+GO
+/****** Object:  Table [dbo].[Tbl_Registration]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[Tbl_Registration]
+GO
+/****** Object:  Table [dbo].[tbl_Product]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Product]
+GO
+/****** Object:  Table [dbo].[tbl_Pro_Size_Price]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Pro_Size_Price]
+GO
+/****** Object:  Table [dbo].[Tbl_Postcode]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[Tbl_Postcode]
+GO
+/****** Object:  Table [dbo].[tbl_Offered_Item]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Offered_Item]
+GO
+/****** Object:  Table [dbo].[tbl_Menu_Toppings]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Menu_Toppings]
+GO
+/****** Object:  Table [dbo].[tbl_Menu_Item]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Menu_Item]
+GO
+/****** Object:  Table [dbo].[tbl_Menu]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Menu]
+GO
+/****** Object:  Table [dbo].[tbl_Free_Item]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Free_Item]
+GO
+/****** Object:  Table [dbo].[Tbl_Fr_Product]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[Tbl_Fr_Product]
+GO
+/****** Object:  Table [dbo].[tbl_Dip]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Dip]
+GO
+/****** Object:  Table [dbo].[tbl_Cus_Pro]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Cus_Pro]
+GO
+/****** Object:  Table [dbo].[tbl_Category]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Category]
+GO
+/****** Object:  Table [dbo].[tbl_Cart]    Script Date: 29-03-2016 16:13:23 ******/
+DROP TABLE [dbo].[tbl_Cart]
+GO
+/****** Object:  UserDefinedFunction [dbo].[SplitString]    Script Date: 29-03-2016 16:13:23 ******/
+DROP FUNCTION [dbo].[SplitString]
+GO
+/****** Object:  StoredProcedure [dbo].[TEst]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[TEst]
+GO
+/****** Object:  StoredProcedure [dbo].[OFFERED]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[OFFERED]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertUpdateCart]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[InsertUpdateCart]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_USER_REGISTRATION]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_USER_REGISTRATION]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_SUBCATEGORY]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_SUBCATEGORY]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_SIZE]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_SIZE]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_PRODUCT]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_PRODUCT]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_DIP]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_DIP]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_CUSTOMISE]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_CUSTOMISE]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_CUSTOMER_REGISTRATION]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_CUSTOMER_REGISTRATION]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_CATEGORY]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_UPDATE_CATEGORY]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_MENU]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_MENU]
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_FREE]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSERT_FREE]
+GO
+/****** Object:  StoredProcedure [dbo].[INSER_UPDATE_POSTCODE]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[INSER_UPDATE_POSTCODE]
+GO
+/****** Object:  StoredProcedure [dbo].[hm_InsertUpdateCart_Combo]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[hm_InsertUpdateCart_Combo]
+GO
+/****** Object:  StoredProcedure [dbo].[FREE]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[FREE]
+GO
+/****** Object:  StoredProcedure [dbo].[FillCart_sp]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[FillCart_sp]
+GO
+/****** Object:  StoredProcedure [dbo].[FETCH_LOGIN_DETAILS]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[FETCH_LOGIN_DETAILS]
+GO
+/****** Object:  StoredProcedure [dbo].[FETCH_CONDITIONAL_QUERY]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[FETCH_CONDITIONAL_QUERY]
+GO
+/****** Object:  StoredProcedure [dbo].[DeleteFromCart]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[DeleteFromCart]
+GO
+/****** Object:  StoredProcedure [dbo].[CHECK_FREE_ITEM_DATA]    Script Date: 29-03-2016 16:13:23 ******/
+DROP PROCEDURE [dbo].[CHECK_FREE_ITEM_DATA]
+GO
+/****** Object:  StoredProcedure [dbo].[CHECK_FREE_ITEM_DATA]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[CHECK_FREE_ITEM_DATA]
+(
+	@GID VARCHAR(50),
+	@Qty INT
+)
+AS
+BEGIN
+	IF(@Qty=(SELECT COUNT(Id) FROM tbl_Cart WHERE GroupID=@GID AND Type='ITEM' AND PriceType='FREE SET'))
+	BEGIN
+		UPDATE tbl_Cart SET Price='0.00' WHERE Id=(SELECT TOP(1) Id from tbl_Cart where GroupID=@GID AND Type='ITEM' AND PriceType='FREE SET' order by Price asc)
+		select 'DONE' MSG
+	END
+	else
+	BEGIN
+		DELETE FROM tbl_Cart WHERE GroupID=@GID
+		select 'ERROR' MSG
+	END
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[DeleteFromCart]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create procedure [dbo].[DeleteFromCart]
+@id bigint,
+@CartId varchar(200)
+
+as
+begin
+delete from [dbo].[tbl_Cart] where PrdId=@id and CartId=@CartId
+
+end
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[FETCH_CONDITIONAL_QUERY]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[FETCH_CONDITIONAL_QUERY]
+(
+		@Condition1 nvarchar(50)=null,
+		@Condition2 nvarchar(50)=null,
+		@Condition3 nvarchar(50)=null,
+		@onTable nvarchar(50)=null
+)
+AS
+BEGIN
+
+	IF(@onTable='FORGET_PASS')
+	BEGIN
+		SELECT Fname+' '+Lname as FullName,EmailID,Password  from dbo.Tbl_Registration where EmailID=@Condition1
+
+	END
+	ELSE IF(@onTable='CATEGORY_LIST_TABLE')
+ BEGIN
+ 
+ select top 10 id,Category,ImgURL,Status from tbl_Category order by id
+
+ END
+	
+ ELSE IF(@onTable='CATEGORY_ID')
+ BEGIN
+ select id,Category,ImgURL,Status from tbl_Category where id=@Condition1
+END
+	
+
+	ELSE IF(@onTable='SIZE_LIST_TABLE')
+ BEGIN
+ 
+	select id,Size,Status from tbl_Size
+
+ END
+	
+ ELSE IF(@onTable='SIZE_ID')
+ BEGIN
+select id,Size,Status from tbl_Size where id=@Condition1	
+END
+ELSE IF(@onTable='DIP_LIST_TABLE')
+ BEGIN
+ 
+	select id,Dip,Status from tbl_Dip
+
+ END
+	
+ ELSE IF(@onTable='DIP_ID')
+ BEGIN
+select id,Dip,Status from tbl_Dip where id=@Condition1	
+END
+ELSE IF(@onTable='PRODUCT_ADD')
+     BEGIN
+      SELECT id, Category, ImgURL, Status from [dbo].[tbl_Category]
+	   SELECT id, Size, Status from [dbo].[tbl_Size]
+	   Select id, Title,Dip, Description, Category, Type, Status,Price,ImgURL, OnDate from [dbo].[tbl_Product] where id=@Condition1
+		  Select id,ProID,SizeID,Price from [dbo].[tbl_Pro_Size_Price] where ProID=@Condition1
+		
+ END
+ELSE IF(@onTable='PRODUCT_DETAILS')
+     BEGIN
+      SELECT p.id,p.Title,p.Dip,C.Category,p.Description,p.Type,p.ImgURL,p.Status from tbl_Product P left outer join [dbo].[tbl_Category] C on P.Category=C.id 
+		 
+ END
+ ELSE IF(@onTable='PRODUCT_BY_CAT')
+     BEGIN
+    SELECT p.id,p.Dip,p.Title,p.Description,p.ImgURL from tbl_Product P left outer join [dbo].[tbl_Category] C on P.Category=C.id  where C.Category=@Condition1 and P.Type='ITEM'
+--		   cREATE TABLE #CUS
+--	(
+--	id int,
+--	Dip int,
+--    Title varchar(50),
+--	Customise nvarchar(max),
+--	ImgURL nvarchar(max)
+--	)
+--	Insert into #CUS
+--		 SELECT p.id,p.Dip,p.Title,L.Title,p.ImgURL from tbl_Product P 
+--left outer join [dbo].[tbl_Category] C on P.Category=C.id 
+-- left outer join [dbo].[tbl_Cus_Pro] Cu on p.id=Cu.ProID
+--left outer join [dbo].[tbl_Product] L on Cu.CusID=L.id where C.Category=@Condition1 and P.Type='ITEM'
+		
+--		 ;with SampleDataR as
+--						(
+--						select *, ROW_NUMBER() over (partition by Title order by Customise) rownum
+--						from #CUS
+--						) 
+--						select distinct id,Dip,Title,ImgURL,(
+--						select distinct Customise 
+--							+ case when s1.rownum = (select MAX(rownum) from SampleDataR 
+--							where s1.Title = s1.Title)
+--						then '' else ' , ' end from SampleDataR s1
+--						where s1.Title = s2.Title
+--						for xml path(''),type).value('(.)[1]','varchar(max)') Customise
+--						from SampleDataR s2
+		  select  P.id, P.ProID, P.SizeID,S.Size,P.Price from [dbo].[tbl_Pro_Size_Price] P inner join [dbo].[tbl_Size] S on P.SizeID=S.id
+		  if (@Condition1='Pizzas' OR @Condition1='Flips')
+		  begin
+		   select id,Title,Price from [dbo].[tbl_Product] where Type='CUSTOMISE' and Category='7'
+		   end
+		  else
+		  begin
+		  select id,Title,Price from [dbo].[tbl_Product] where Type='CUSTOMISE' and Category='4'
+		  end
+		  Select id,ProID,CusID from [dbo].[tbl_Cus_Pro]
+		   Select id, Dip, Status from [dbo].[tbl_Dip]
+ END
+ ELSE IF(@onTable='PRODUCT_SIZE')
+     BEGIN
+      SELECT P.id,P.Price,S.Size from [dbo].[tbl_Pro_Size_Price] P inner join [dbo].[tbl_Size] S on P.SizeID=S.id where P.ProID=@Condition1
+		 END
+
+ ELSE IF(@onTable='CUSTOMISE_ADD')
+     BEGIN
+      SELECT id, Title, Price from [dbo].[tbl_Product] where Type='ITEM'
+	SELECT id, Title, Price from [dbo].[tbl_Product] where Type='CUSTOMISE' and Category='7'
+	 Select max(ProID) id from [tbl_Cus_Pro] where ProID=@Condition1
+		  Select C.CusID,p.Title from [dbo].[tbl_Cus_Pro] C inner join [dbo].[tbl_Product] p on C.CusID=p.id where C.ProID=@Condition1
+		
+ END
+ ELSE IF(@onTable='CUSTOMISE_LIST')
+     BEGIN
+     cREATE TABLE #tEMP
+	(
+	id int,
+    Title varchar(50),
+	Customise nvarchar(max)
+	)
+	Insert into #tEMP
+		select p.id,p.Title,L.Title from [dbo].[tbl_Cus_Pro] C inner join
+		 [dbo].[tbl_Product] P ON C.ProID=P.id 
+		 inner join [dbo].[tbl_Product] L on C.CusID=L.id
+		
+		 ;with SampleDataR as
+						(
+						select *, ROW_NUMBER() over (partition by Title order by Customise) rownum
+						from #tEMP
+						) 
+						select distinct id,Title,(
+						select distinct Customise 
+							+ case when s1.rownum = (select MAX(rownum) from SampleDataR 
+							where s1.Title = s1.Title)
+						then '' else ' , ' end from SampleDataR s1
+						where s1.Title = s2.Title
+						for xml path(''),type).value('(.)[1]','varchar(max)') Customise
+						from SampleDataR s2
+
+ END
+
+
+ ELSE IF(@onTable='SPECIAL_PRODUCT_ADD')
+     BEGIN
+	  SELECT id, Size, Status from [dbo].[tbl_Size]
+      SELECT id, Category, ImgURL, Status from [dbo].[tbl_Category]
+	  
+	   Select id, Title, Description, Status,Price,ImgURL, OnDate from [dbo].[tbl_Menu] where id=@Condition1
+		  Select id, MID, ItemID, ItemQty, ItemSize from [dbo].[tbl_Menu_Item] where MID=@Condition1
+		
+ END
+ ELSE IF(@onTable='SPECIAL_PRODUCT_LIST')
+     BEGIN
+	 cREATE TABLE #SPE
+		(
+		id bigint,
+		Title varchar(50),
+		ImgURL nvarchar(max),	   
+		Description nvarchar(max),
+		 Price Decimal(18,2),
+		Item nvarchar(max)
+			)
+			Insert into #SPE
+		select M.id,M.Title,M.ImgURL,M.Description,M.Price,('('+Convert(varchar,MI.ItemQty) +')'+S.Size+'_'+C.Category ) As Item from tbl_Menu M LEFT OUTER JOIN tbl_Menu_Item MI ON M.id=MI.MID 
+			left outer join [dbo].[tbl_Category] C on MI.ItemID=C.id
+		left outer join [dbo].[tbl_Size] S on MI.ItemSize=S.id where M.Type='SPECIAL'
+			
+ 
+		 ;with SampleDataR as
+						(
+							select *, ROW_NUMBER() over (partition by id,Title,Description,ImgURL,Price order by Item) rownum
+						from #SPE
+						) 
+						select distinct id,Title,Description,ImgURL,Price,(
+						select distinct Item 
+							+ case when s1.rownum = (select MAX(rownum) from SampleDataR 
+							where id = s1.id)
+							then '' else ' + ' end from SampleDataR s1
+						where s1.id = s2.id 
+							for xml path(''),type).value('(.)[1]','varchar(max)') Item
+						from SampleDataR s2
+						
+ END
+
+ ELSE IF(@onTable='SPECIAL_PRODUCT_DETAILS')
+     BEGIN
+  select M.MID,C.id,isnull(M.ItemSize,0) ItemSize,C.Category,C.ImgURL,sum(M.ItemQty) ItemQty,isnull(S.Size,'Any') Size--,M.Type 
+  from [dbo].[tbl_Menu_Item] M left outer join [dbo].[tbl_Category] C on M.ItemID=C.id
+left outer join [dbo].[tbl_Size] S on M.ItemSize=S.id 
+where M.MID=@Condition1 
+group by M.MID,C.id,M.ItemSize,C.Category,C.ImgURL,S.Size
+--order by M.Type desc
+
+--select p.id,P.Title,p.Category,ps.SizeID
+-- from [dbo].[tbl_Product] P inner join [dbo].[tbl_Pro_Size_Price] PS on P.id=PS.ProID where p.Type='ITEM'
+select p.id,P.Title,p.Category,ps.SizeID,ps.Price,S.Size
+ from [dbo].[tbl_Product] P inner join [dbo].[tbl_Pro_Size_Price] PS on P.id=PS.ProID
+ inner join [dbo].[tbl_Size] S on PS.SizeID=S.id
+  where p.Type='ITEM'
+
+ Select id, Title, Price, ImgURL, Description, OnDate, Status, Type	 from [dbo].[tbl_Menu] where id=@Condition1
+ select id,Title,Price from [dbo].[tbl_Product] where Type='CUSTOMISE'
+ END
+ ELSE IF(@onTable='SPECIAL_PRODUCT_LIST_ALL')
+     BEGIN
+	 Select id, Title, Price, ImgURL, Description, OnDate, Status, Type from [dbo].[tbl_Menu]
+ END
+  ELSE IF(@onTable='FREE_PRODUCT_ADD')
+     BEGIN
+	  SELECT id, Size, Status from [dbo].[tbl_Size]
+      SELECT id, Category, ImgURL, Status from [dbo].[tbl_Category]
+	select m.id,m.Title,m.Description,m.ImgURL,m.Status,mi.ItemQty Qty,mi.ItemID, mi.Type,hmi.ItemQty FreeQty, hmi.Type  
+from tbl_Menu m left outer join tbl_Menu_Item mi on convert(varchar,m.id)+'PAY'=convert(varchar,mi.mid)+mi.Type
+left outer join tbl_Menu_Item hmi on convert(varchar,m.id)+'FREE'=convert(varchar,hmi.mid)+hmi.Type
+where m.id=@Condition1  
+	  
+ END
+ ELSE IF(@onTable='FREE_PRODUCT_LIST')
+     BEGIN
+	  SELECT id, Title, Description, Status, ImgURL, onDate from [dbo].[tbl_Menu] where Type='FREE'
+      
+	  
+	  
+ END
+  ELSE IF(@onTable='CART_LIST')
+     BEGIN
+     Select distinct GroupID from [dbo].[tbl_Cart] where CartId=@Condition1
+	 Select 	Id, CartId, ProductName,PriceType, SmallDesc, Size,(Price*Qty) Price, Qty, Type, GroupID from [dbo].[tbl_Cart] where CartId=@Condition1-- and Type='CUSTOMISE'
+ END
+
+
+ ELSE IF(@onTable='CART_LIST_DETAILS')
+BEGIN
+select C.CartId,R.Fname,R.Lname,R.EmailID,R.ContactNo,Convert(varchar,C.OnDate,106) Date,C.OrderStatus,C.PaymentStatus  from [dbo].[tbl_Cart] C left join [dbo].[Tbl_Registration] R on C.UserId=R.id where C.PaymentStatus='SUCCESS' and C.OnDate=Convert(date,getdate())  group by C.CartId,R.Fname,R.Lname,R.EmailID,R.ContactNo,C.OrderStatus,C.PaymentStatus,C.OnDate 
+
+
+END	
+ELSE IF(@onTable='ALL_CART_LIST_DETAILS')
+BEGIN
+select C.CartId,R.Fname,R.Lname,R.EmailID,R.ContactNo,R.Pincode,R.ContactNo,R.DeliveryAddress as DAddress,R.Country,Convert(varchar,C.OnDate,106) Date,C.OrderStatus  from [dbo].[tbl_Cart] C left join [dbo].[Tbl_Registration] R on C.UserId=R.id where C.CartId=@Condition1 group by C.CartId,R.Fname,R.Lname,R.EmailID,R.ContactNo,C.OnDate,C.OrderStatus,C.PaymentStatus,R.Pincode,R.DeliveryAddress,R.Country
+  Select distinct GroupID,isnull(PriceType,'ITEM') PriceType from [dbo].[tbl_Cart] where CartId=@Condition1
+	 Select 	Id, CartId,ProductName+'('+isnull(Size,'Any')+')('+Type+')' as ProductName,PriceType, SmallDesc,DealDesc, Size,Price,(Price*Qty) totPrice, Qty, Type, GroupID from [dbo].[tbl_Cart] where CartId=@Condition1-- and Type='CUSTOMISE'
+	
+END	
+
+
+
+-- ELSE IF(@onTable='TOPPING_DETAILS')
+--     BEGIN
+--      SELECT id,Title,Description,Type,ImgURL,Status from tbl_Product where Type='TOPPING' order by id desc
+		 
+-- END
+--   ELSE IF(@onTable='PRODUCT_DETAILS_ONE')
+--		 BEGIN
+--			 SELECT id,Title,ImgURL,Description,Type,Status
+--			 from tbl_Product WHERE id=@Condition1			 
+			 
+			
+--		 END
+--	ELSE IF(@onTable='PRODUCT_BY_CAT')
+--     BEGIN
+--		 SELECT S.SubCategory,S.ImgURL ,M.SubID,M.CatID
+--		  from [dbo].[tbl_Menu] M 
+--		  left join [dbo].[tbl_SubCategory] S on M.SubID=S.id  
+--		  where M.CatID=(Select id from [dbo].[tbl_Category] where Category=@Condition1) and M.SubID!='0' and M.IsGroup='False'
+--		  group by S.SubCategory,s.ImgURL,M.SubID,M.CatID
+
+
+--		  SELECT p.id,p.Title,p.ImgURL,p.Price,p.Description,M.CatID
+--		  from [dbo].[tbl_Menu] M left join [dbo].[tbl_Menu_Item] I on M.id=I.MID 
+--		  left join [dbo].[tbl_Product] P on I.ItemID=p.id
+--		  where M.CatID=(Select id from [dbo].[tbl_Category] where Category=@Condition1) and M.SubID='0' and M.IsGroup='False'
+--		  group by p.id,p.Title,p.Price,p.Description,p.ImgURL,M.CatID
+
+
+--		   SELECT p.id,p.Title,p.ImgURL,T.Price,p.Description,M.CatID
+--		  from [dbo].[tbl_Menu] M left join [dbo].[tbl_Menu_Toppings] T on M.id=T.MID 
+--		  left join [dbo].[tbl_Product] P on T.ItemID=p.id
+--		  where M.CatID=(Select id from [dbo].[tbl_Category] where Category=@Condition1) and M.SubID='0' and M.IsGroup='False'
+--		  group by p.id,p.Title,p.Price,p.Description,p.ImgURL,M.CatID,T.Price
+
+--		  cREATE TABLE #tEMP
+--			(
+--			id bigint,
+--			SubCategory varchar(50),
+--			ImgURL varchar(max),
+--			Price Decimal(18,2),
+--			Item nvarchar(max)
+--			)
+--			Insert into #tEMP
+--			select M.id,coalesce(s.SubCategory, M.Title),m.ImgURL,m.Price,('('+Convert(varchar,MI.ItemQty) +') '+p.Title ) As Item from tbl_Menu M LEFT OUTER JOIN tbl_Menu_Item MI ON M.id=MI.MID 
+--			left outer join tbl_Product p on mi.ItemID=p.id
+--			left outer join tbl_SubCategory s on m.SubID=s.id
+--			 WHERE M.IsGroup='True' and M.CatID=(Select id from [dbo].[tbl_Category] where Category=@Condition1)
+ 
+--			 ;with SampleDataR as
+--							(
+--							select *, ROW_NUMBER() over (partition by id,SubCategory,ImgURL,Price order by Item) rownum
+--							from #tEMP
+--							) 
+--							select distinct id,SubCategory,ImgURL,Price,(
+--							select distinct Item 
+--								+ case when s1.rownum = (select MAX(rownum) from SampleDataR 
+--								where id = s1.id)
+--								then '' else ' + ' end from SampleDataR s1
+--							where s1.id = s2.id 
+--							for xml path(''),type).value('(.)[1]','varchar(max)') Item
+--							from SampleDataR s2
+
+
+-- END
+--  ELSE IF(@onTable='PRODUCT_BY_MENU')
+--     BEGIN
+--     SELECT M.id,p.id as Proid,p.Title,p.Price,p.ImgURL,P.Description 	  from [dbo].[tbl_Menu] M 
+--	 left join [dbo].[tbl_Menu_Item] I on M.id=I.MID 
+--	 inner join [dbo].[tbl_Product] P on I.ItemID=P.id 
+--	 where M.CatID=@Condition1 and M.SubID=@Condition2
+
+--	   SELECT M.id,p.id as Proid,p.Title,T.Price,p.ImgURL,P.Description 	  from [dbo].[tbl_Menu] M 
+--	 left join [dbo].[tbl_Menu_Toppings] T on M.id=T.MID 
+--	 inner join [dbo].[tbl_Product] P on T.ItemID=P.id 
+--	 where M.CatID=@Condition1 and M.SubID=@Condition2
+-- END
+--		 ELSE IF(@onTable='MENU_DETAILS')
+--     BEGIN
+--      SELECT M.id,M.Title,C.Category,S.SubCategory,M.Price,M.ImgURL,M.Status 
+--	  from [dbo].[tbl_Menu] M left join [dbo].[tbl_Category] C on M.CatID=C.id 
+--	  left join [dbo].[tbl_SubCategory] S on M.SubID=S.id 
+--	  order by id desc
+		 
+-- END
+
+
+--   ELSE IF(@onTable='MENU_DETAILS_ONE')
+--	BEGIN
+--		DECLARE @MID BIGINT
+--		SELECT id, Title, Price, CatID, SubID, ImgURL, OnDate,Status,IsGroup
+--		from  [dbo].[tbl_Menu] where CatID=@Condition1 and SubID=@Condition2
+
+--		select @MID=id FROM tbl_Menu where CatID=@Condition1 and SubID=@Condition2
+--		select MID,ItemID,ItemQty from tbl_Menu_Item where MID=@MID
+--		select MID,ItemID,Price from tbl_Menu_Toppings where MID=@MID
+
+--	END
+	
+--  ELSE IF(@onTable='FETCH_ALL_POSTCODE')
+-- BEGIN
+-- select id,Postcode,Status from [dbo].[Tbl_Postcode]
+--END
+-- ELSE IF(@onTable='POSTCODE_BY_ID')
+-- BEGIN
+--select id,Postcode,Status from [dbo].[Tbl_Postcode] where id=@Condition1
+--END
+	
+--	ELSE IF(@onTable='CART_PRO_LIST')
+-- BEGIN
+--select ProductName,Price,Qty,TotPrice  from [dbo].[tbl_Cart] where CartId=@Condition1
+--END	
+--ELSE IF(@onTable='CART_DETAILS')
+-- BEGIN
+--select C.id,C.CartId,R.Fname,R.Lname,R.EmailID,R.ContactNo,R.Pincode,R.ContactNo,R.DeliveryAddress as DAddress,R.Country,Convert(varchar,C.OnDate,106) Date,C.OrderStatus  from [dbo].[tbl_Cart] C left join [dbo].[Tbl_Registration] R on C.UserId=R.id where C.CartId=@Condition1
+--END	
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[FETCH_LOGIN_DETAILS]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[FETCH_LOGIN_DETAILS]
+
+
+
+@Emailid nvarchar(50),
+@Password nvarchar(50)
+as
+begin
+Select Fname, Lname, EmailID, Password, ContactNo, UserType, Status from dbo.Tbl_Registration where EmailID=@Emailid and Password=@Password
+end
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[FillCart_sp]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[FillCart_sp]
+  (
+  @cartId varchar(150)
+   )
+  as
+  begin
+ Select Sum(Price) Price, Qty, GroupID from [dbo].[tbl_Cart]
+ where CartId=@CartId  group by GroupID,Qty 
+  	 cREATE TABLE #Cart
+		(
+		
+		ProductName nvarchar(max),
+		GroupID nvarchar(max)
+		
+			)
+			Insert into #Cart
+			Select  ProductName,GroupID from [dbo].[tbl_Cart] 	where CartId=@cartId
+ 
+		 ;with SampleDataR as
+						(
+							select *, ROW_NUMBER() over (partition by GroupID order by ProductName) rownum
+						from #Cart
+						) 
+						select distinct GroupID,(
+						select distinct ProductName
+							+ case when s1.rownum = (select MAX(rownum) from SampleDataR 
+							where GroupID = s1.GroupID)
+							then '' else ' , ' end from SampleDataR s1
+						where s1.GroupID = s2.GroupID 
+							for xml path(''),type).value('(.)[1]','varchar(max)') Item
+						from SampleDataR s2
+
+  end
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[FREE]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE Procedure [dbo].[FREE]
+(
+@VAl varchar(max),
+@TrNo Bigint=1
+
+)
+  As 
+    BEgin       
+
+
+
+
+					  -----------------------------------------------------------------
+
+
+Create Table #Temp
+(
+SrNo bigint IDENTITY(1,1) NOT NULL,
+Item varchar(50)
+)
+ Create Table #Temp1
+		   (
+		   SrNo bigint IDENTITY(1,1) NOT NULL,
+           Item varchar(50)
+		   )
+ 
+    Declare @ItemVal int,@Size int,@Qty int
+   Insert into #Temp (Item)
+   Select item from dbo.SplitString(@VAl,'|')
+   -------------------------------------------------------------------------------------------------------------
+  Declare @Srn bigint
+  Declare @Item varchar(200)
+  DECLARE db_cursor CURSOR FOR
+
+  Select * from #Temp
+    OPEN db_cursor FETCH NEXT FROM db_cursor 
+    INTO @Srn ,@Item
+    WHILE @@FETCH_STATUS = 0 
+    BEGIN 
+	      Truncate table #Temp1
+		 insert into  #Temp1(Item)
+           Select item from dbo.SplitString(@Item,',')
+		   Select @ItemVal=Item from #Temp1 where SrNo='1'
+		    Select @Size=Item from #Temp1 where SrNo='2'
+			 Select @Qty=Item from #Temp1 where SrNo='3'
+		   
+
+		   Select @ItemVal As ItemVal,@Size As Size,@Qty As Qty
+		   Insert Into [dbo].[tbl_Menu_Item](MID, ItemID, ItemQty, ItemSize, Type) values (@TrNo,@ItemVal,@Qty,@Size,'FREE')
+		 
+    FETCH NEXT FROM db_cursor INTO 
+    @Srn ,@Item END CLOSE db_cursor DEALLOCATE db_cursor 
+	
+	end
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[hm_InsertUpdateCart_Combo]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[hm_InsertUpdateCart_Combo]
+(
+		@Id bigint,
+		@ProductName nvarchar(max),
+		@SmallDesc nvarchar(max),
+	--	@DealDesc nvarchar(max),
+		@Size varchar(50),
+		@price decimal(18,2),
+		@Qty bigint,
+		--@Type varchar(50),
+		@GroupID varchar(50),
+		--@PriceType nvarchar(max),
+		--@InstanceID nvarchar(150),		
+		@CartID nvarchar(150),
+		@Cus nvarchar(max)=null
+	)
+AS
+	
+	begin
+
+		insert into [dbo].[tbl_Cart](ProductName, SmallDesc,Size,Price, Qty,Type,GroupID,CartID,PriceType) 
+		select Item,@SmallDesc,@Size,@price,@Qty,'ITEM',@GroupID,@CartID,'DEAL' from [dbo].[SplitString](@ProductName,'|')
+		--values(@ProductName,@SmallDesc,@Size,@price,@Qty,'ITEM',@GroupID,@CartID)
+
+		if(@Cus is not null and @Cus !='' and @Cus !='0|0')
+		begin
+			insert into [dbo].[tbl_Cart](ProductName,Price,Qty,Type,GroupID,CartID,PriceType) 
+					select LEFT(Item, CHARINDEX('|', Item) - 1), RIGHT(Item, CHARINDEX('|', REVERSE(Item)) - 1),@Qty,'CUSTOMISE',@GroupID,@CartID,'DEAL'
+					   from  [dbo].[SplitString](@Cus,',')
+		end
+
+	
+end
+
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSER_UPDATE_POSTCODE]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Procedure [dbo].[INSER_UPDATE_POSTCODE]
+(@id int,
+@Postcode varchar(50),
+@Status varchar(20)
+)
+as
+begin
+if exists(select id from [dbo].[Tbl_Postcode] where id=@id)
+begin 
+update [dbo].[Tbl_Postcode] set Postcode=@Postcode,Status=@Status
+end
+else
+begin
+insert into [dbo].[Tbl_Postcode](Postcode,Status) values(@Postcode,@Status)
+end
+end
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_FREE]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_FREE]
+(
+@id bigint,
+@Title nvarchar(100),
+@Description varchar(max),
+@ImgURL nvarchar(max),
+@Status varchar(20),
+@Price decimal(18,2)=null,
+@Type varchar(50),
+@Item_Offered int,
+@Qty int,
+@PayQty int
+)
+AS
+BEGIN
+	declare @mid bigint
+	if exists(select id from [dbo].[tbl_Menu] where id=@id)
+	begin
+		update [dbo].[tbl_Menu] set Title=@Title,Description=@Description,Status=@Status,Type=@Type,Price=@Price where id=@id
+		if(@ImgURL!='')
+		begin
+			update [dbo].[tbl_Menu] set ImgURL=@ImgURL where id=@id
+		end
+		 ----*************update offered & Free items 
+		delete from [dbo].[tbl_Menu_Item] where MID=@id			
+			   Insert Into [dbo].[tbl_Menu_Item](MID, ItemID, ItemQty, Type)values (@id,@Item_Offered,@Qty,'PAY')
+			   Insert Into [dbo].[tbl_Menu_Item](MID, ItemID, ItemQty, Type) values (@id,@Item_Offered,@PayQty,'FREE')
+			  
+			
+	end
+	else
+	begin
+		INSERT INTO [dbo].[tbl_Menu](Title,Description,ImgURL,Status,Type,Price)
+		 VALUES(@Title,@Description,@ImgURL,@Status,@Type,@Price)
+		 
+		 ----*************insert Offered & Free items 	
+		 select @mid=max(id) from [dbo].[tbl_Menu] where Title=@Title
+		 Insert Into [dbo].[tbl_Menu_Item](MID, ItemID, ItemQty, Type)values (@mid,@Item_Offered,@Qty,'PAY')
+	     Insert Into [dbo].[tbl_Menu_Item](MID, ItemID, ItemQty, Type) values (@mid,@Item_Offered,@PayQty,'FREE')
+	   
+
+	end
+END
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_MENU]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_MENU]
+(
+@id bigint,
+@Title nvarchar(100),
+@Price decimal(18,2)=null,
+@Description varchar(max),
+@ImgURL nvarchar(max),
+@Status varchar(20),
+@Type varchar(50),
+@Menu_Item nvarchar(max)=null
+)
+AS
+BEGIN
+	declare @mid bigint
+	if exists(select id from [dbo].[tbl_Menu] where id=@id)
+	begin
+		update [dbo].[tbl_Menu] set Title=@Title,Price=@Price,Description=@Description,Status=@Status,Type=@Type where id=@id
+		if(@ImgURL!='')
+		begin
+			update [dbo].[tbl_Menu] set ImgURL=@ImgURL where id=@id
+		end
+		 ----*************update Menu items 
+		delete from tbl_Menu_Item where MID=@id	
+			  
+			   Exec TEst @Menu_Item,@id
+			
+	end
+	else
+	begin
+		INSERT INTO [dbo].[tbl_Menu](Title, Price,Description,ImgURL,Status,Type)
+		 VALUES(@Title,@Price,@Description,@ImgURL,@Status,@Type)
+		 
+		 ----*************insert Menu items 	
+		 select @mid=max(id) from tbl_Menu where Title=@Title
+
+	      Exec TEst @Menu_Item,@mid
+
+	end
+END
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_CATEGORY]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_UPDATE_CATEGORY]
+(
+@id int,
+@Category varchar(50),
+@Status varchar(20),
+@ImgURL nvarchar(max)
+
+)
+AS
+BEGIN
+	IF EXISTS(SELECT id from tbl_Category where id=@id)
+	BEGIN
+			UPDATE tbl_Category SET Category=@Category,Status=@Status
+			 WHERE id=@id
+			 if(@imgURL<>'')
+			 begin
+			 update [dbo].[tbl_Category] set ImgURL=@ImgURL where id=@id
+			 end
+		END
+		ELSE
+    BEGIN
+		INSERT INTO tbl_Category(Category,ImgURL,Status)
+			VALUES(@Category,@ImgURL,@Status)
+			
+		END
+
+END
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_CUSTOMER_REGISTRATION]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_UPDATE_CUSTOMER_REGISTRATION]
+(
+	@id BIGINT,
+	@FirstName VARCHAR(50),
+	@LastName VARCHAR(50),
+	@EmailID NVARCHAR(50),
+	@Country varchar(50),	
+	@Phone VARCHAR(50),	
+	 @PostCode varchar(50),
+	  @DAddress nvarchar(max),
+	  @usertype varchar(20),
+	  @CARTID varchar(150)
+)
+AS
+BEGIN
+	IF EXISTS(SELECT id FROM [dbo].[Tbl_Registration] WHERE id=@id)
+	BEGIN
+		UPDATE [dbo].[Tbl_Registration] SET FName=@FirstName,LName=@LastName,EmailID=@EmailID,ContactNo=@Phone,DeliveryAddress=@DAddress,usertype=@usertype,Country=@Country,Pincode=@PostCode
+		WHERE id=@id
+	END
+	ELSE
+	BEGIN
+		INSERT INTO [dbo].[Tbl_Registration](Fname,Lname,EmailID,ContactNo,Pincode,Country,DeliveryAddress,UserType)
+		
+			VALUES(@FirstName,@LastName,@EmailID,@Phone,@PostCode,@Country,@DAddress,@usertype)
+			
+			update [dbo].[tbl_Cart] set UserId=(select MAX(id) from [dbo].[Tbl_Registration]) where cartid=@CARTID
+	END
+END
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_CUSTOMISE]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_UPDATE_CUSTOMISE]
+(
+@id int,
+@ProID int,
+@Cus_ID nvarchar(max)=null
+)
+AS
+BEGIN
+
+	IF EXISTS(SELECT ProID FROM [dbo].[tbl_Cus_Pro] WHERE ProID=@id)
+	BEGIN
+		
+		delete from [tbl_Cus_Pro] where ProID=@id
+		 insert into [tbl_Cus_Pro](ProID,CusID)
+		 select @ProID,convert(int,Item)
+			from  [dbo].[SplitString](@Cus_ID,',')
+			END
+	
+	ELSE
+	BEGIN
+	INSERT INTO [tbl_Cus_Pro](ProID,CusID)
+   select @ProID,convert(int,Item)
+			from  [dbo].[SplitString](@Cus_ID,',')	
+	END
+END
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_DIP]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_UPDATE_DIP]
+(
+@id int,
+@Dip varchar(50),
+@Status varchar(50)
+
+)
+AS
+BEGIN
+	IF EXISTS(SELECT id from tbl_Dip where id=@id)
+	BEGIN
+			UPDATE tbl_Dip SET Dip=@Dip,Status=@Status
+			 WHERE id=@id
+			
+		END
+		ELSE
+    BEGIN
+		INSERT INTO tbl_Dip(Dip,Status)
+			VALUES(@Dip,@Status)
+			
+		END
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_PRODUCT]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[INSERT_UPDATE_PRODUCT]
+(
+@id int,
+@Title varchar(50),
+@Category bigint,
+@ImgURL nvarchar(max)=null,
+@Description varchar(Max),
+@Type varchar(50),
+@Status varchar(20),
+@Size_Price nvarchar(100)=null,
+@Price decimal(18,2)=null,
+@Dip int=null
+)
+AS
+BEGIN
+declare @Pro int
+	IF EXISTS(SELECT id FROM tbl_Product WHERE id=@id)
+	BEGIN
+		UPDATE tbl_Product SET Title=@Title, 
+				Description=@Description,Category=@Category,Type=@Type,Dip=@Dip,
+				Status=@Status,Price=@Price WHERE id=@id
+
+				 if (@ImgURL!='')
+			begin
+				update  tbl_Product set ImgURL=@ImgURL from tbl_Product where id=@id
+
+				end
+					 ----*************update Size Price
+		delete from [dbo].[tbl_Pro_Size_Price] where ProID=@id
+		 insert into [dbo].[tbl_Pro_Size_Price](ProID, SizeID, Price)
+		 select @id, LEFT(Item, CHARINDEX('|', Item) - 1), RIGHT(Item, CHARINDEX('|', REVERSE(Item)) - 1)
+			from  [dbo].[SplitString](@Size_Price,',')
+			END
+	
+	ELSE
+	BEGIN
+	INSERT INTO tbl_Product(Title,Description,Type,Status,Category,ImgURL,Price,Dip)
+     VALUES(@Title,@Description,@Type,@Status,@Category,@ImgURL,@Price,@Dip)	
+
+	  ----*************insert Size Price 
+	  select @Pro=max(id) from [dbo].[tbl_Product] where Title=@Title
+			 insert into [dbo].[tbl_Pro_Size_Price](ProID, SizeID, Price)
+		 select @Pro, LEFT(Item, CHARINDEX('|', Item) - 1), RIGHT(Item, CHARINDEX('|', REVERSE(Item)) - 1)
+			from  [dbo].[SplitString](@Size_Price,',')
+	END
+END
+
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_SIZE]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[INSERT_UPDATE_SIZE]
+(
+@id int,
+@Size varchar(50),
+@Status varchar(50)
+
+)
+AS
+BEGIN
+	IF EXISTS(SELECT id from tbl_Size where id=@id)
+	BEGIN
+			UPDATE tbl_Size SET Size=@Size,Status=@Status
+			 WHERE id=@id
+			
+		END
+		ELSE
+    BEGIN
+		INSERT INTO tbl_Size(Size,Status)
+			VALUES(@Size,@Status)
+			
+		END
+
+END
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_SUBCATEGORY]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[INSERT_UPDATE_SUBCATEGORY]
+(
+@id int,
+@Category int,
+@SubCategory varchar(50),
+@Status varchar(20),
+@ImgURL nvarchar(max)
+
+)
+AS
+BEGIN
+	IF EXISTS(SELECT id from tbl_SubCategory where id=@id)
+	BEGIN
+			UPDATE tbl_SubCategory SET SubCategory=@SubCategory,Category=@Category,Status=@Status
+			 WHERE id=@id
+			 if(@imgURL<>'')
+			 begin
+			 update [dbo].[tbl_SubCategory] set ImgURL=@ImgURL where id=@id
+			 end
+		END
+		ELSE
+    BEGIN
+		INSERT INTO tbl_SubCategory(Category,SubCategory,ImgURL,Status)
+			VALUES(@Category,@SubCategory,@ImgURL,@Status)
+			
+		END
+
+END
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[INSERT_UPDATE_USER_REGISTRATION]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[INSERT_UPDATE_USER_REGISTRATION]
+(
+	@id BIGINT,
+	@Fname VARCHAR(50),
+	@Lname VARCHAR(50),
+	@EmailID NVARCHAR(50),
+	@Password NVARCHAR(50),
+	@ContactNo NVARCHAR(50)
+	
+)
+AS
+BEGIN
+	
+		
+		INSERT INTO dbo.Tbl_Registration(Fname,Lname,EmailID,Password,ContactNo,UserType,Status)
+			VALUES(@Fname,@Lname,@EmailID,@Password,@ContactNo,'USER','ACTIVE')
+
+		SELECT id,Fname,EmailID,Status FROM dbo.Tbl_Registration WHERE EmailID=@EmailID
+
+	
+END
+
+
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[InsertUpdateCart]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[InsertUpdateCart]
+(
+		@Id bigint,
+		@ProductName nvarchar(max),
+		@SmallDesc nvarchar(max)=null,
+		@DealDesc nvarchar(max)=null,
+		@Size varchar(50),
+		@price decimal(18,2),
+		@Qty bigint,
+		@Dip nvarchar(500)=null,
+		@GroupID varchar(50),
+		@PriceType nvarchar(max)=null,
+		--@InstanceID nvarchar(150),		
+		@CartID nvarchar(150),
+		@Cus nvarchar(max)=null
+	)
+AS
+	
+	begin
+
+		insert into [dbo].[tbl_Cart](ProductName, SmallDesc,Size,Price, Qty,Type,GroupID,CartID,PriceType,DealDesc) 
+		values(@ProductName,@SmallDesc,@Size,@price,@Qty,'ITEM',@GroupID,@CartID,@PriceType,@DealDesc)
+
+		if(@Cus is not null and @Cus !='' and @Cus !='0|0')
+		begin
+			insert into [dbo].[tbl_Cart](ProductName,Price,Qty,Type,GroupID,CartID,PriceType) 
+					select LEFT(Item, CHARINDEX('|', Item) - 1), RIGHT(Item, CHARINDEX('|', REVERSE(Item)) - 1),@Qty,'CUSTOMISE',@GroupID,@CartID,@PriceType
+					   from  [dbo].[SplitString](@Cus,',')
+		end
+if(@Dip is not null and @Dip !='' and @Dip !='-SELECT-,-SELECT-,')
+		begin
+			insert into [dbo].[tbl_Cart](ProductName,Price,Qty,Type,GroupID,CartID,PriceType) 
+			values(@Dip,'0.00',@Qty,'CUSTOMISE',@GroupID,@CartID,@PriceType)
+					
+		end
+	
+end
+GO
+/****** Object:  StoredProcedure [dbo].[OFFERED]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE Procedure [dbo].[OFFERED]
+(
+@VAl varchar(max),
+@TrNo Bigint=1
+
+)
+  As 
+    BEgin           
+
+
+
+
+					  -----------------------------------------------------------------
+
+
+Create Table #Temp
+(
+SrNo bigint IDENTITY(1,1) NOT NULL,
+Item varchar(50)
+)
+ Create Table #Temp1
+		   (
+		   SrNo bigint IDENTITY(1,1) NOT NULL,
+           Item varchar(50)
+		   )
+ 
+    Declare @ItemVal int,@Size int,@Qty int
+   Insert into #Temp (Item)
+   Select item from dbo.SplitString(@VAl,'|')
+   -------------------------------------------------------------------------------------------------------------
+  Declare @Srn bigint
+  Declare @Item varchar(200)
+  DECLARE db_cursor CURSOR FOR
+
+  Select * from #Temp
+    OPEN db_cursor FETCH NEXT FROM db_cursor 
+    INTO @Srn ,@Item
+    WHILE @@FETCH_STATUS = 0 
+    BEGIN 
+	      Truncate table #Temp1
+		 insert into  #Temp1(Item)
+           Select item from dbo.SplitString(@Item,',')
+		   Select @ItemVal=Item from #Temp1 where SrNo='1'
+		    Select @Size=Item from #Temp1 where SrNo='2'
+			 Select @Qty=Item from #Temp1 where SrNo='3'
+		   
+
+		   Select @ItemVal As ItemVal,@Size As Size,@Qty As Qty
+		   Insert Into [dbo].[tbl_Menu_Item](MID, ItemID, ItemQty, ItemSize, Type)values (@TrNo,@ItemVal,@Qty,@Size,'PAY')
+		 
+    FETCH NEXT FROM db_cursor INTO 
+    @Srn ,@Item END CLOSE db_cursor DEALLOCATE db_cursor 
+	
+	end
+
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[TEst]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE Procedure [dbo].[TEst]
+(
+@VAl varchar(max),--='1,2,3|2,8,9|9,8,7|1,2,3|2,8,9|9,8,7',
+@TrNo Bigint=1
+
+)
+  As 
+    BEgin
+	              
+
+
+
+
+					  -----------------------------------------------------------------
+
+
+Create Table #Temp
+(
+SrNo bigint IDENTITY(1,1) NOT NULL,
+Item varchar(50)
+)
+ Create Table #Temp1
+		   (
+		   SrNo bigint IDENTITY(1,1) NOT NULL,
+           Item varchar(50)
+		   )
+ 
+    Declare @ItemVal int,@Size int,@Qty int
+   Insert into #Temp (Item)
+   Select item from dbo.SplitString(@VAl,'|')
+   -------------------------------------------------------------------------------------------------------------
+  Declare @Srn bigint
+  Declare @Item varchar(200)
+  DECLARE db_cursor CURSOR FOR
+
+  Select * from #Temp
+    OPEN db_cursor FETCH NEXT FROM db_cursor 
+    INTO @Srn ,@Item
+    WHILE @@FETCH_STATUS = 0 
+    BEGIN 
+	      Truncate table #Temp1
+		 insert into  #Temp1(Item)
+           Select item from dbo.SplitString(@Item,',')
+		   Select @ItemVal=Item from #Temp1 where SrNo='1'
+		    Select @Size=Item from #Temp1 where SrNo='2'
+			 Select @Qty=Item from #Temp1 where SrNo='3'
+		   
+
+		   Select @ItemVal As ItemVal,@Size As Size,@Qty As Qty
+		   Insert Into tbl_Menu_Item(MID, ItemID, ItemQty, ItemSize, Type)values (@TrNo,@ItemVal,@Qty,@Size,'PAY')
+		 
+    FETCH NEXT FROM db_cursor INTO 
+    @Srn ,@Item END CLOSE db_cursor DEALLOCATE db_cursor 
+	
+	end
+	
+
+
+
+
+GO
+/****** Object:  UserDefinedFunction [dbo].[SplitString]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE FUNCTION [dbo].[SplitString]
+(    
+     @Input NVARCHAR(MAX),
+     @Character CHAR(1)
+)
+RETURNS @Output TABLE (
+     Item NVARCHAR(1000)
+)
+AS
+BEGIN
+     DECLARE @StartIndex INT, @EndIndex INT
+
+     SET @StartIndex = 1
+     IF SUBSTRING(@Input, LEN(@Input) - 1, LEN(@Input)) <> @Character
+     BEGIN
+           SET @Input = @Input + @Character
+     END
+
+     WHILE CHARINDEX(@Character, @Input) > 0
+     BEGIN
+           SET @EndIndex = CHARINDEX(@Character, @Input)
+          
+           INSERT INTO @Output(Item)
+           SELECT SUBSTRING(@Input, @StartIndex, @EndIndex - 1)
+          
+           SET @Input = SUBSTRING(@Input, @EndIndex + 1, LEN(@Input))
+     END
+     RETURN
+END
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  Table [dbo].[tbl_Cart]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Cart](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[CartId] [nvarchar](150) NULL,
+	[ProductName] [nvarchar](max) NULL,
+	[SmallDesc] [nvarchar](max) NULL,
+	[DealDesc] [nvarchar](max) NULL,
+	[Size] [varchar](50) NULL,
+	[Price] [decimal](18, 2) NULL,
+	[Qty] [bigint] NULL,
+	[Type] [varchar](50) NULL,
+	[GroupID] [varchar](50) NULL,
+	[PriceType] [nvarchar](max) NULL,
+	[Category] [varchar](50) NULL,
+	[InstanceID] [nvarchar](150) NULL,
+	[OrderStatus] [varchar](50) NULL,
+	[PaymentStatus] [varchar](50) NULL,
+	[UserId] [bigint] NULL,
+	[OnDate] [date] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Category]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Category](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Category] [varchar](50) NULL,
+	[ImgURL] [nvarchar](max) NULL,
+	[Status] [varchar](20) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Cus_Pro]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_Cus_Pro](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ProID] [int] NULL,
+	[CusID] [int] NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tbl_Dip]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Dip](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Dip] [varchar](50) NULL,
+	[Status] [varchar](50) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Tbl_Fr_Product]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Tbl_Fr_Product](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [varchar](100) NULL,
+	[Description] [nvarchar](max) NULL,
+	[Status] [varchar](50) NULL,
+	[ImgURL] [nvarchar](max) NULL,
+	[onDate] [datetime] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Free_Item]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_Free_Item](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[ProID] [bigint] NULL,
+	[ItemID] [bigint] NULL,
+	[SizeID] [int] NULL,
+	[ItemQty] [int] NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tbl_Menu]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Menu](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](100) NULL,
+	[Price] [decimal](18, 2) NULL,
+	[ImgURL] [nvarchar](max) NULL,
+	[Description] [varchar](max) NULL,
+	[OnDate] [datetime] NULL,
+	[Status] [varchar](20) NULL,
+	[Type] [varchar](50) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Menu_Item]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Menu_Item](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[MID] [bigint] NULL,
+	[ItemID] [bigint] NULL,
+	[ItemQty] [int] NULL,
+	[ItemSize] [int] NULL,
+	[Type] [varchar](50) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Menu_Toppings]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_Menu_Toppings](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[MID] [bigint] NULL,
+	[ItemID] [bigint] NULL,
+	[Price] [decimal](18, 2) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tbl_Offered_Item]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_Offered_Item](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ProID] [int] NULL,
+	[ItemID] [bigint] NULL,
+	[ItemQty] [int] NULL,
+	[SizeID] [int] NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Tbl_Postcode]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Tbl_Postcode](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Postcode] [varchar](50) NULL,
+	[Status] [varchar](10) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Pro_Size_Price]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_Pro_Size_Price](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[ProID] [int] NULL,
+	[SizeID] [int] NULL,
+	[Price] [decimal](18, 2) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tbl_Product]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Product](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [varchar](50) NULL,
+	[Description] [varchar](max) NULL,
+	[Category] [bigint] NULL,
+	[Type] [varchar](50) NULL,
+	[Status] [varchar](20) NULL,
+	[ImgURL] [nvarchar](max) NULL,
+	[OnDate] [datetime] NULL,
+	[Price] [decimal](18, 2) NULL,
+	[Dip] [int] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Tbl_Registration]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Tbl_Registration](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Fname] [varchar](50) NULL,
+	[Lname] [varchar](50) NULL,
+	[EmailID] [nvarchar](50) NULL,
+	[Password] [nvarchar](50) NULL,
+	[ContactNo] [nvarchar](50) NULL,
+	[UserType] [varchar](20) NULL,
+	[DeliveryAddress] [nvarchar](max) NULL,
+	[Country] [varchar](50) NULL,
+	[Pincode] [varchar](50) NULL,
+	[Phone] [varchar](50) NULL,
+	[Status] [nvarchar](50) NULL,
+	[OnDate] [datetime] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tbl_Size]    Script Date: 29-03-2016 16:13:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tbl_Size](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Size] [varchar](50) NULL,
+	[Status] [varchar](50) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Category] ON 
+
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (1, N'Starters', N'~/DataImages/Category/item_0_20160325112500486.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (2, N'Pizzas', N'~/DataImages/Category/item_0_20160325140650854.png', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (3, N'Kebabs|Wraps', N'~/DataImages/Category/item_0_20160325124616795.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (4, N'Burgers', N'~/DataImages/Category/item_0_20160325140628689.png', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (5, N'Baguettes', N'~/DataImages/Category/item_0_20160325130417557.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (6, N'Salads', N'~/DataImages/Category/item_0_20160325122751538.png', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (7, N'Flips', N'~/DataImages/Category/item_0_20160325140716515.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (8, N'Drinks', N'~/DataImages/Category/item_0_20160325140742273.png', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (9, N'Desserts', N'~/DataImages/Category/item_0_20160326111952870.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (10, N'Meals', N'~/DataImages/Category/item_0_20160326121043586.JPG', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (14, N'Doner', N'~/DataImages/Category/item_0_20160329112207807.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (15, N'Garlic Bread', N'~/DataImages/Category/item_0_20160329112906452.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (16, N'Garlic Bread With Cheese', N'~/DataImages/Category/item_0_20160329113013040.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (19, N'Chips', N'~/DataImages/Category/item_0_20160329111620555.jpg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (20, N'CansDrink', N'~/DataImages/Category/item_0_20160329104450935.png', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Category] ([id], [Category], [ImgURL], [Status]) VALUES (21, N'BottlesDrink', N'~/DataImages/Category/item_0_20160329104817857.png', N'ACTIVE')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Cus_Pro] ON 
+
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (3, 51, 132)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (4, 51, 116)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (5, 52, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (6, 52, 122)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (7, 52, 126)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (8, 52, 127)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (9, 52, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (10, 52, 122)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (11, 52, 126)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (12, 52, 127)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (13, 53, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (14, 53, 104)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (15, 53, 105)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (16, 53, 106)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (17, 53, 107)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (18, 53, 133)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (19, 54, 105)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (20, 54, 107)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (21, 54, 111)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (22, 54, 123)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (23, 55, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (24, 55, 106)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (25, 55, 111)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (26, 55, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (27, 56, 129)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (28, 56, 130)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (29, 56, 128)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (30, 57, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (31, 57, 121)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (32, 57, 122)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (33, 57, 123)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (34, 35, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (35, 58, 111)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (36, 58, 113)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (37, 58, 123)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (38, 59, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (39, 59, 106)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (40, 59, 132)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (41, 59, 124)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (42, 60, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (43, 60, 105)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (44, 60, 106)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (45, 60, 126)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (46, 62, 102)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (47, 62, 106)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (48, 62, 111)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (49, 62, 121)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (50, 62, 126)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (51, 37, 108)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (52, 37, 122)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (53, 65, 108)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (54, 65, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (55, 66, 112)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (56, 66, 121)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (57, 39, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (58, 39, 111)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (59, 39, 112)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (60, 39, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (61, 40, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (62, 40, 105)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (63, 40, 121)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (64, 40, 123)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (65, 41, 111)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (66, 41, 133)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (67, 41, 125)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (75, 42, 106)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (76, 42, 113)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (77, 42, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (78, 42, 122)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (72, 43, 103)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (73, 43, 105)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (74, 43, 120)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (79, 34, 131)
+GO
+INSERT [dbo].[tbl_Cus_Pro] ([id], [ProID], [CusID]) VALUES (80, 34, 116)
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Cus_Pro] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Dip] ON 
+
+GO
+INSERT [dbo].[tbl_Dip] ([id], [Dip], [Status]) VALUES (2, N'Chilli', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Dip] ([id], [Dip], [Status]) VALUES (3, N'Mayo', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Dip] ([id], [Dip], [Status]) VALUES (4, N'Garlic Mayo', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Dip] ([id], [Dip], [Status]) VALUES (5, N'BBQ', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Dip] ([id], [Dip], [Status]) VALUES (6, N'Tahini & Ketchup', N'ACTIVE')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Dip] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Menu] ON 
+
+GO
+INSERT [dbo].[tbl_Menu] ([id], [Title], [Price], [ImgURL], [Description], [OnDate], [Status], [Type]) VALUES (1, N'Deal 3', CAST(0.00 AS Decimal(18, 2)), N'~/DataImages/Free/item_0_20160326125710666.jpg', N'BUY ANY 2 PIZZAS ANY SIZE & GET 3 rd', CAST(0x0000A5D500D57C94 AS DateTime), N'ACTIVE', N'FREE')
+GO
+INSERT [dbo].[tbl_Menu] ([id], [Title], [Price], [ImgURL], [Description], [OnDate], [Status], [Type]) VALUES (2, N'Deal 1', CAST(9.99 AS Decimal(18, 2)), N'~/DataImages/Menu/item_0_20160326145237288.png', N'2 Reg Done Kebabs,10" Garlic Bread,2Chips and 2 Cans Drink', CAST(0x0000A5D500F52E1E AS DateTime), N'ACTIVE', N'SPECIAL')
+GO
+INSERT [dbo].[tbl_Menu] ([id], [Title], [Price], [ImgURL], [Description], [OnDate], [Status], [Type]) VALUES (3, N'Deal 2', CAST(14.95 AS Decimal(18, 2)), N'~/DataImages/Menu/item_0_20160326151823463.png', N'Any 16" Pizzz,Garlic Bread,Garlic Bread with Cheese ,2 Chips and bottle of Drink', CAST(0x0000A5D500FC40BA AS DateTime), N'ACTIVE', N'SPECIAL')
+GO
+INSERT [dbo].[tbl_Menu] ([id], [Title], [Price], [ImgURL], [Description], [OnDate], [Status], [Type]) VALUES (4, N'Deal 4', CAST(11.99 AS Decimal(18, 2)), N'~/DataImages/Menu/item_0_20160326152500654.jpg', N'2 X 10" Folded Doner(Choices of Salad and Sauce on request),2 Chips and 2 Cans of Drink', CAST(0x0000A5D500FE1219 AS DateTime), N'ACTIVE', N'SPECIAL')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Menu] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Menu_Item] ON 
+
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (1, 1, 2, 2, NULL, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (2, 1, 2, 1, NULL, N'FREE')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (18, 4, 14, 2, 15, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (19, 4, 19, 2, 1, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (20, 4, 20, 2, 28, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (21, 3, 2, 1, 10, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (22, 3, 15, 1, 1, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (23, 3, 16, 1, 1, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (24, 3, 19, 2, 1, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (25, 3, 21, 1, 29, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (26, 2, 14, 2, 1, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (27, 2, 15, 1, 15, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (28, 2, 19, 2, 1, N'PAY')
+GO
+INSERT [dbo].[tbl_Menu_Item] ([id], [MID], [ItemID], [ItemQty], [ItemSize], [Type]) VALUES (29, 2, 20, 2, 28, N'PAY')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Menu_Item] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Tbl_Postcode] ON 
+
+GO
+INSERT [dbo].[Tbl_Postcode] ([Id], [Postcode], [Status]) VALUES (3, N'L35 5DY', N'ACTIVE')
+GO
+SET IDENTITY_INSERT [dbo].[Tbl_Postcode] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Pro_Size_Price] ON 
+
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (1, 1, 1, CAST(2.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (2, 1, 2, CAST(4.20 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (3, 2, 1, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (4, 2, 2, CAST(5.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (5, 3, 1, CAST(5.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (6, 3, 2, CAST(7.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (348, 4, 1, CAST(1.10 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (349, 4, 2, CAST(1.70 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (9, 5, 1, CAST(1.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (10, 6, 2, CAST(1.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (11, 7, 1, CAST(1.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (12, 8, 1, CAST(3.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (13, 8, 2, CAST(4.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (31, 9, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (277, 18, 1, CAST(1.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (278, 19, 1, CAST(2.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (17, 11, 1, CAST(3.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (18, 11, 2, CAST(6.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (19, 12, 1, CAST(2.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (20, 12, 2, CAST(2.90 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (21, 13, 1, CAST(2.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (22, 14, 2, CAST(3.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (25, 15, 2, CAST(3.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (26, 16, 1, CAST(3.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (27, 16, 2, CAST(4.20 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (28, 17, 1, CAST(3.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (29, 17, 2, CAST(4.20 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (279, 20, 1, CAST(1.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (280, 35, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (281, 35, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (35, 21, 3, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (36, 21, 4, CAST(4.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (37, 22, 3, CAST(3.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (38, 22, 4, CAST(4.75 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (39, 23, 3, CAST(3.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (40, 23, 4, CAST(4.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (41, 24, 3, CAST(4.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (42, 24, 4, CAST(5.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (43, 25, 3, CAST(4.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (44, 25, 4, CAST(5.35 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (45, 26, 4, CAST(6.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (46, 27, 4, CAST(5.55 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (48, 28, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (282, 35, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (283, 35, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (284, 35, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (285, 35, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (286, 35, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (287, 35, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (288, 34, 7, CAST(4.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (289, 34, 8, CAST(6.35 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (95, 41, 15, CAST(5.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (96, 41, 16, CAST(7.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (97, 42, 15, CAST(5.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (98, 42, 16, CAST(7.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (99, 43, 15, CAST(5.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (100, 43, 16, CAST(7.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (290, 34, 9, CAST(8.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (102, 45, 19, CAST(0.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (103, 45, 20, CAST(0.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (104, 45, 21, CAST(0.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (291, 34, 10, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (292, 34, 11, CAST(4.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (293, 34, 12, CAST(6.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (294, 34, 13, CAST(8.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (109, 49, 22, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (110, 49, 23, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (111, 49, 24, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (112, 49, 25, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (113, 49, 26, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (114, 49, 27, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (115, 50, 22, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (116, 50, 23, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (117, 50, 25, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (118, 50, 26, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (119, 50, 27, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (120, 51, 7, CAST(4.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (121, 51, 8, CAST(6.35 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (122, 51, 9, CAST(8.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (123, 51, 10, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (124, 51, 11, CAST(4.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (125, 51, 12, CAST(6.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (126, 51, 13, CAST(8.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (127, 51, 14, CAST(10.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (295, 34, 14, CAST(10.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (296, 36, 7, CAST(5.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (297, 36, 8, CAST(8.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (298, 36, 9, CAST(10.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (299, 36, 10, CAST(12.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (300, 36, 11, CAST(6.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (301, 36, 12, CAST(8.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (302, 36, 13, CAST(10.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (144, 53, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (145, 53, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (146, 53, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (147, 53, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (148, 53, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (149, 53, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (150, 53, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (151, 53, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (312, 54, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (313, 54, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (314, 54, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (315, 54, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (316, 54, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (317, 54, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (318, 54, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (319, 54, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (320, 55, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (321, 55, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (322, 55, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (323, 55, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (324, 55, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (325, 55, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (326, 55, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (327, 55, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (168, 56, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (169, 56, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (170, 56, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (171, 56, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (172, 56, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (173, 56, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (174, 56, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (175, 56, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (176, 57, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (177, 57, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (178, 57, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (179, 57, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (180, 57, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (181, 57, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (182, 57, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (183, 57, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (184, 58, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (185, 58, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (186, 58, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (187, 58, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (188, 58, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (189, 58, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (190, 58, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (191, 58, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (192, 59, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (193, 59, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (194, 59, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (195, 59, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (196, 59, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (197, 59, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (198, 59, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (199, 59, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (200, 60, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (201, 60, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (202, 60, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (203, 60, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (204, 60, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (205, 60, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (206, 60, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (207, 60, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (303, 36, 14, CAST(12.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (304, 37, 7, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (305, 37, 8, CAST(7.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (306, 37, 9, CAST(9.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (307, 37, 10, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (308, 37, 11, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (309, 37, 12, CAST(7.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (310, 37, 13, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (311, 37, 14, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (336, 73, 28, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (335, 74, 28, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (334, 75, 28, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (331, 76, 28, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (332, 77, 28, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (333, 78, 28, CAST(0.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (337, 79, 29, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (363, 102, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (364, 103, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (365, 104, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (366, 105, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (367, 106, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (368, 107, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (369, 108, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (370, 109, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (371, 110, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (372, 111, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (373, 112, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (374, 113, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (375, 114, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (376, 115, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (390, 129, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (391, 130, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (392, 131, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (393, 132, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (394, 133, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (395, 134, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (396, 135, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (49, 29, 5, CAST(2.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (50, 29, 6, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (51, 30, 5, CAST(2.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (52, 30, 6, CAST(3.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (53, 31, 5, CAST(2.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (54, 31, 6, CAST(3.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (55, 32, 6, CAST(3.70 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (56, 33, 6, CAST(4.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (338, 80, 29, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (89, 38, 15, CAST(4.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (90, 38, 16, CAST(6.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (91, 39, 15, CAST(5.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (92, 39, 16, CAST(7.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (93, 40, 15, CAST(5.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (94, 40, 16, CAST(7.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (208, 61, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (209, 61, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (210, 61, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (211, 61, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (212, 61, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (213, 61, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (214, 61, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (215, 61, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (216, 62, 7, CAST(5.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (217, 62, 8, CAST(8.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (218, 62, 9, CAST(10.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (219, 62, 10, CAST(12.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (220, 62, 11, CAST(6.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (221, 62, 12, CAST(8.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (222, 62, 13, CAST(10.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (223, 62, 14, CAST(12.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (224, 63, 7, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (225, 63, 8, CAST(7.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (226, 63, 9, CAST(9.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (227, 63, 10, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (228, 63, 11, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (229, 63, 12, CAST(7.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (230, 63, 13, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (231, 63, 14, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (232, 64, 7, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (233, 64, 8, CAST(7.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (234, 64, 9, CAST(9.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (235, 64, 10, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (236, 64, 11, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (237, 64, 12, CAST(7.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (238, 64, 13, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (239, 64, 14, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (240, 65, 7, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (241, 65, 8, CAST(7.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (242, 65, 9, CAST(9.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (243, 65, 10, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (244, 65, 11, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (245, 65, 12, CAST(7.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (246, 65, 13, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (247, 65, 14, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (248, 66, 7, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (249, 66, 8, CAST(7.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (250, 66, 9, CAST(9.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (251, 66, 10, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (252, 66, 11, CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (253, 66, 12, CAST(7.85 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (254, 66, 13, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (255, 66, 14, CAST(11.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (256, 44, 17, CAST(4.49 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (257, 46, 17, CAST(1.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (258, 46, 18, CAST(3.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (259, 47, 17, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (260, 48, 17, CAST(2.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (261, 10, 1, CAST(2.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (262, 10, 2, CAST(3.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (263, 67, 17, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (264, 68, 17, CAST(3.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (265, 69, 17, CAST(2.99 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (266, 70, 17, CAST(3.25 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (267, 71, 17, CAST(3.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (268, 72, 17, CAST(4.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (269, 52, 7, CAST(5.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (270, 52, 8, CAST(8.29 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (271, 52, 9, CAST(9.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (272, 52, 10, CAST(11.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (273, 52, 11, CAST(6.15 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (274, 52, 12, CAST(8.65 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (275, 52, 13, CAST(9.95 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (276, 52, 14, CAST(12.45 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (339, 81, 29, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (340, 82, 29, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (341, 83, 29, CAST(1.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (350, 89, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (351, 90, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (352, 91, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (353, 92, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (354, 93, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (355, 94, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (356, 95, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (357, 96, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (358, 97, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (359, 98, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (360, 99, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (361, 100, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (362, 101, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (342, 84, 1, CAST(1.10 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (343, 85, 1, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (344, 86, 15, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (345, 87, 1, CAST(2.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (346, 87, 15, CAST(2.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (347, 88, 1, CAST(3.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (377, 116, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (378, 117, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (379, 118, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (380, 119, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (381, 120, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (382, 121, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (383, 122, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (384, 123, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (385, 124, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (386, 125, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (387, 126, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (388, 127, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[tbl_Pro_Size_Price] ([id], [ProID], [SizeID], [Price]) VALUES (389, 128, 0, CAST(0.00 AS Decimal(18, 2)))
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Pro_Size_Price] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Product] ON 
+
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (1, N'Garlic Pizza Bread', N'Pizza Bread', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325113154573.png', CAST(0x0000A5D400BE0A2B AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (2, N'Garlic Pizza Bread with Cheese', N'Pizza Bread with Cheese', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325113444181.png', CAST(0x0000A5D400BED0C1 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (3, N'Calzone Garlic Pizza Bread(Folded)', N'With Cheese,mushrooms,Doner meat & Onions', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325113915055.jpg', CAST(0x0000A5D400C00E5F AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (4, N'Chips', N'Chips', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329120619975.jpg', CAST(0x0000A5D400C097A4 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (5, N'Curly Fries', N'Fries', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325114326353.jpg', CAST(0x0000A5D400C134A5 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (6, N'Potato Wedges', N'(Portion with 1Dip)', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325114614454.jpg', CAST(0x0000A5D400C1F9A8 AS DateTime), NULL, 1)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (7, N'Onion Rings', N'(8 pcs)', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325114842395.jpg', CAST(0x0000A5D400C2A701 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (8, N'Pop ''n'' Chicken with 2 Dips', N'Pop', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325115208001.png', CAST(0x0000A5D400C397FF AS DateTime), NULL, 2)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (9, N'Papa''s Nuggets', N'(8 pcs) with choice of 2 Dips', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325115643589.jpg', CAST(0x0000A5D400C4DAED AS DateTime), NULL, 2)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (10, N'Chicken Wings', N'(Reg 5 pcs) or (Lrg 10 pcs)', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325115912405.JPG', CAST(0x0000A5D400C58950 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (11, N'BBQ Spare Ribs', N'(Reg 5 pcs) or (Lrg 10 pcs)', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325120315096.jpg', CAST(0x0000A5D400C6A5BC AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (12, N'Garlic Mushroom', N'(without or with cheese)', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325120730349.jpg', CAST(0x0000A5D400C7D0D9 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (13, N'Mozzarella Sticks', N'(5 pcs)', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325121250192.jpg', CAST(0x0000A5D400C947B1 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (14, N'Italian Meatballs', N'New', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325121437807.jpg', CAST(0x0000A5D400C9C5C0 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (15, N'Spicy Meatballs', N'New', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325121650245.jpg', CAST(0x0000A5D400CA60F5 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (16, N'Doner Meat With Chips', N'Doner', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325122017350.jpg', CAST(0x0000A5D400CB53A7 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (17, N'Portion Of Doner Meat', N'Doner', 1, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325122212147.jpg', CAST(0x0000A5D400CBDA2E AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (18, N'Garden Salad', N'Salad', 6, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325123001486.png', CAST(0x0000A5D400CE004F AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (19, N'Prawn Cocktail', N'Prawns,Onions,Cucumber,lettuce,Tomatoes & Thousands Island dressing', 6, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325123412225.png', CAST(0x0000A5D400CF2607 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (20, N'Coleslaw', N'Salad', 6, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325123653796.png', CAST(0x0000A5D400CFE35A AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (21, N'Doner Kebabs', N'Kebab', 3, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325124905114.jpg', CAST(0x0000A5D400D33C60 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (22, N'Chicken Kebabs', N'Marinated  Boneless Chicken', 3, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325125158986.jpg', CAST(0x0000A5D400D4081F AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (23, N'Shish Kebabs', N'Kebabs', 3, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325125330347.jpg', CAST(0x0000A5D400D47334 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (24, N'Chicken & Shish', N'Kebabs', 3, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325125448126.jpg', CAST(0x0000A5D400D4CE55 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (25, N'Mixed Kebabs', N'Doner with Shish or Chicken', 3, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325125752236.jpg', CAST(0x0000A5D400D5A621 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (26, N'Papa''s Full House Kebabs', N'Doner,Shish,Chicken & Chips,Served with Salad Naan', 3, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325130042280.jpg', CAST(0x0000A5D400D66D69 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (27, N'Shish Baguettes  With Fries', N'Served with Salad and choice of sauses', 5, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325130800878.jpg', CAST(0x0000A5D400D86F5D AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (28, N'Chicken Baguettes with Fries', N'Served with salad and choice of sauces', 5, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325140330196.jpg', CAST(0x0000A5D400E7ACEF AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (35, N'Pepperoni Passion', N'Double deluxe pepperoni and double cheese', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325150638257.gif', CAST(0x0000A5D400F9041A AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (41, N'French Fries Flips', N'Doner Meat, French Fries,Garlic Mayo,Chilli Sause &Cheese', 7, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325154552474.jpg', CAST(0x0000A5D40103CAE8 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (42, N'Spicy Flips', N'Pepperoni,Jalapenos,Mixed Peppers & Salami Topped with cheese', 7, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325154833063.jpg', CAST(0x0000A5D401048717 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (43, N'Flip Favourite', N'Pepperoni,Mushrooms,Onions,Chicken & Topped with cheese', 7, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325155141610.jpg', CAST(0x0000A5D40105641E AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (44, N'Ben & Jerry''s', N'Assorted Flavours 500ml', 9, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325170911282.png', CAST(0x0000A5D4011AACF4 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (45, N'Milkshake', N'Strawberry,banana,Chocolate', 8, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325171202737.jpg', CAST(0x0000A5D4011B75C9 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (46, N'Chocolate Fudge Cake', N'Cake', 9, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325171354414.jpg', CAST(0x0000A5D4011BF8A9 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (47, N'New York Style Cheesecake', N'Cake', 9, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325171548513.jpg', CAST(0x0000A5D4011C7E66 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (48, N'chocolate filled Doughnut(2)', N'Doughnut', 9, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325171814646.jpg', CAST(0x0000A5D4011D299E AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (49, N'Can Soft Drink', N'Drink', 8, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325172457287.jpg', CAST(0x0000A5D4011F0176 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (50, N'Bottle of Soft Drink', N'Drink', 8, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325172839416.jpg', CAST(0x0000A5D4012005CA AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (29, N'Beef Burger with Fries', N'All our Burgers are grilled over charcoal & served on a toasted bun with fries and fresh salad & Choice of Sauses.', 4, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325142933607.png', CAST(0x0000A5D400EED50E AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (30, N'Cheese Burger with Fries', N'All our Burgers are grilled over charcoal & served on a toasted bun with fries and fresh salad & Choice of Sauses.', 4, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325143127903.jpg', CAST(0x0000A5D400EF5B13 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (31, N'Chicken Burger with Fries', N'All our Burgers are grilled over charcoal & served on a toasted bun with fries and fresh salad & Choice of Sauses.', 4, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325143315651.jpg', CAST(0x0000A5D400EFD942 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (32, N'Doner Burger with Fries', N'All our Burgers are grilled over charcoal & served on a toasted bun with fries and fresh salad & Choice of Sauses.', 4, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325143507892.jpg', CAST(0x0000A5D400F05CC7 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (33, N'Tower Burger with Fries', N'All our Burgers are grilled over charcoal & served on a toasted bun with fries and fresh salad & Choice of Sauses.', 4, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325143631630.jpg', CAST(0x0000A5D400F0BEF2 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (34, N'Margherita', N'Mozzarella Cheese and our own Pizza Sause', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325145504181.jpg', CAST(0x0000A5D400F5D6B6 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (36, N'Papa''s Special', N'A bit of Everything!', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325151053372.jpg', CAST(0x0000A5D400FA2F0C AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (37, N'Hawaiian', N'Salami & Pineapple', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325151716684.jpg', CAST(0x0000A5D400FBF03D AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (38, N'Cheese and Tomato ', N'Flips', 7, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325152045920.jpg', CAST(0x0000A5D400FCE563 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (39, N'Papa''s Flips', N'Pepperoni,Spicy Beef,Onions,Chillies,Garlic butter with cheese', 7, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325152451298.jpg', CAST(0x0000A5D400FE0504 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (40, N'Doner Flips', N'Doner meat,Mushrooms,Onions,Chicken and Topped with cheese', 7, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325152750654.jpg', CAST(0x0000A5D400FED71D AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (54, N'Garlic Chicken', N'Garlic ,Cajun Chicken,Mushroom & Sweetcorn', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326094634244.jpg', CAST(0x0000A5D500A11B85 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (55, N'Garlic Pepperoni', N'Garlic,Deluxe Pepperoni,Red Onion & Peppers', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326095122879.jpg', CAST(0x0000A5D500A26D9C AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (56, N'Seafood', N'Tuna chunks,Salted anchovies & Prawns', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326095530552.jpg', CAST(0x0000A5D500A38FCF AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (57, N'Mighty Meaty', N'Chicken,Deluxe pepperoni,Minced Meat & Salami', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326095945717.jpg', CAST(0x0000A5D500A4BADC AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (58, N'Chicken Volcano', N'Cajun Chicken,Garlic Butter & Jalapenos', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326100521322.jpg', CAST(0x0000A5D500A64422 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (59, N'BBQ Original', N'BBQ Base,BBQ Chicken,Red Onion & Mixed Peppers', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326101040982.jpg', CAST(0x0000A5D500A7BAC2 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (60, N'Pizza Meatballs', N'Red Onions,Fresh Field mushrooms,Mixed peppers &  Meatballs', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326104051858.jpg', CAST(0x0000A5D500B004E0 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (73, N'Coke', N'Drink', 20, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329105254967.png', CAST(0x0000A5D800B35442 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (74, N'Diet Coke', N'Drink', 20, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329105351402.png', CAST(0x0000A5D800B3965C AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (75, N'Pepsi', N'Drink', 20, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329105437482.png', CAST(0x0000A5D800B3CC5D AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (76, N'Cherry Coke', N'Drink', 20, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329105552780.png', CAST(0x0000A5D800B424A1 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (77, N'7 UP', N'Drink', 20, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329105637029.png', CAST(0x0000A5D800B45879 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (78, N' Fanta', N'Drink', 20, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329105718633.png', CAST(0x0000A5D800B4893C AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (79, N'Coke', N'Drink', 21, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329110516624.png', CAST(0x0000A5D800B6B95B AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (102, N'Baby Spinach', N'Topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132007086.jpg', CAST(0x0000A5D800DBC268 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (103, N'Red Onions', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132047510.jpg', CAST(0x0000A5D800DBF1C2 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (104, N'Fresh Tomato', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132425648.jpg', CAST(0x0000A5D800DCF164 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (105, N' Fresh Field Mushrooms', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132620914.jpg', CAST(0x0000A5D800DD787D AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (106, N'Fresh Mixed Peppers', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132715474.jpg', CAST(0x0000A5D800DDB89C AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (107, N'Sweetcorn', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132752156.jpg', CAST(0x0000A5D800DDE363 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (108, N'Pineapple', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132842357.jpg', CAST(0x0000A5D800DE1E39 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (109, N'Sun-dried Tomatoes', N'topping', 7, N'CUSTOMISE', N'NONE', N'~/DataImages/Product/item_0_20160329132916780.jpg', CAST(0x0000A5D800DE468F AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (110, N'Black Olived', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329132956073.jpg', CAST(0x0000A5D800DE749C AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (111, N'Garlic Butter', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329133039358.jpg', CAST(0x0000A5D800DEA75B AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (112, N'Fresh Green Chillies', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329133129545.jpg', CAST(0x0000A5D800DEE228 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (113, N' Jalapeno Peppers', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329133212961.jpg', CAST(0x0000A5D800DF1508 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (51, N'Sizzling BBQ', N'Mozzarella cheese & BBQ Sause', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325173337411.jpg', CAST(0x0000A5D401216308 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (52, N'Meatilicious', N'Pizza', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325173725528.jpg', CAST(0x0000A5D401226E72 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (53, N'Vegetarian', N'Red Onions,Fresh mushrooms,mixed peppers,Fresh Tomatoes,Sweetcorn or Chillies', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160325174200002.jpg', CAST(0x0000A5D40123AFFC AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (61, N'Create your own Pizza or Flip', N'Four toppings of your choice', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326104402820.jpg', CAST(0x0000A5D500B0E4BA AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (80, N'Diet Coke', N'drink', 21, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329110551035.png', CAST(0x0000A5D800B6E1AD AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (114, N'Herbs', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329133255784.jpg', CAST(0x0000A5D800DF4735 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (115, N'Spices', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329133542277.jpg', CAST(0x0000A5D800E00A53 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (129, N'Prawns', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143259489.jpg', CAST(0x0000A5D800EFC64F AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (130, N'Salted Anchovies', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143350546.jpg', CAST(0x0000A5D800F00221 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (131, N'Our own Pizza Sauce', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143433424.jpg', CAST(0x0000A5D800F03464 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (132, N'BBQ', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143524433.jpg', CAST(0x0000A5D800F07027 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (133, N'Chilli', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143601656.jpg', CAST(0x0000A5D800F09BC5 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (134, N'Mayonnise', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143643560.jpg', CAST(0x0000A5D800F0CCE1 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (135, N' Garlic Butter', N'toppinng', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143721556.jpg', CAST(0x0000A5D800F0F968 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (62, N'Papa''s Favourite', N'Baby Spinach,Mixed Peppers,Chicken breast strip,Meatballs,Parmesan shaving & a thouch of Garlic Butter', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326105111444.jpg', CAST(0x0000A5D500B2DAF7 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (63, N'Chicken & Mushroom or Sweetcorn', N'Pizza', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326105756141.jpg', CAST(0x0000A5D500B4B52C AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (64, N'Salami & Mushroom', N'Pizza', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326110132450.jpg', CAST(0x0000A5D500B5B2AF AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (65, N'Caribbean', N'Deluxe Pepperoni & Pineapple', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326110646484.jpg', CAST(0x0000A5D500B722CB AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (66, N'Maxican', N'Mince Meat & Green Chillies', 2, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326111041249.jpg', CAST(0x0000A5D500B835CD AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (67, N'Meal A', N'Chicken Fillet Burger,Fries and Can of Drink', 10, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326121542598.jpg', CAST(0x0000A5D500CA11AB AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (68, N'Meal 1A', N'Skyscrapper Burger,Chicken Breast,Onion Rings,Slice of Cheese,Fries and Can of Drink', 10, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326122302384.jpg', CAST(0x0000A5D500CC1515 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (69, N'Meal B', N'Chicken Nuggets(6),Fries and Can of Drink', 10, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326123223967.png', CAST(0x0000A5D500CEA730 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (70, N'Meal C', N'2 Pcs Chicken,Fries and Can of Drink', 10, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326123727175.jpg', CAST(0x0000A5D500D00A8B AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (71, N'Meal D', N'7" Pizza any two toppings Fries and Can of Drink', 10, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326124050844.png', CAST(0x0000A5D500D0F92A AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (72, N'Meal E', N'Chicken Wrap,Fries and Can of Drink(add Shish or Doner £1 extra)', 10, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160326124442295.png', CAST(0x0000A5D500D20864 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (81, N'7 UP', N'drink', 21, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329110627287.png', CAST(0x0000A5D800B70C29 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (82, N'Pepsi', N'Drink', 21, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329110702168.png', CAST(0x0000A5D800B7350A AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (83, N'Fanta', N'drink', 21, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329110743000.png', CAST(0x0000A5D800B764E3 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (89, N'Salad', N'toppings', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329124619310.jpg', CAST(0x0000A5D800D27A19 AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (90, N'Lattice', N'toppings', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329124703120.jpg', CAST(0x0000A5D800D2AD6E AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (91, N'Fresh tomato', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329124744772.jpg', CAST(0x0000A5D800D2DE3C AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (92, N'Onions', N'toppings', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329124818778.jpg', CAST(0x0000A5D800D3061A AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (93, N'Cucumber', N'toppings', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329124902150.jpg', CAST(0x0000A5D800D338EE AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (94, N'Plain', N'toppings', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329124957266.jpg', CAST(0x0000A5D800D37980 AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (95, N'Mayo', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125028657.jpg', CAST(0x0000A5D800D39E4B AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (96, N'Garlic', N'toppings', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125102220.jpg', CAST(0x0000A5D800D3C59F AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (97, N'Garlic Mayo', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125135082.jpg', CAST(0x0000A5D800D3EC21 AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (98, N'Catch up', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125216311.jpg', CAST(0x0000A5D800D41C72 AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (99, N'Ralish', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125257755.jpg', CAST(0x0000A5D800D44D04 AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (100, N'Chilli Sause', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125338962.jpg', CAST(0x0000A5D800D47D4E AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (101, N'Sweet Chilli', N'topping', 4, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329125422739.jpg', CAST(0x0000A5D800D4B09C AS DateTime), CAST(0.00 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (84, N'Chips', N'Chips', 19, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329111713954.jpg', CAST(0x0000A5D800BA020A AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (85, N'Reg Doner Kebab', N'Kebab', 14, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329112409707.jpg', CAST(0x0000A5D800BBE930 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (86, N'Folded Doner', N'Kebab', 14, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329112458514.jpg', CAST(0x0000A5D800BC2262 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (87, N'Garlic Bread', N'Starter', 15, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329113230360.jpg', CAST(0x0000A5D800BE33F4 AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (88, N'Garlic Bread With Cheese', N'Starter', 16, N'ITEM', N'ACTIVE', N'~/DataImages/Product/item_0_20160329113402340.jpg', CAST(0x0000A5D800BE9FBE AS DateTime), NULL, 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (116, N'Mozzeralla', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142053983.jpg', CAST(0x0000A5D800EC7434 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (117, N'Cheddar', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142141526.jpg', CAST(0x0000A5D800ECABD2 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (118, N'Parmesan', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142228736.jpg', CAST(0x0000A5D800ECE323 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (119, N' Greek Feta', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142302811.jpg', CAST(0x0000A5D800ED0B12 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (120, N'Deluxe Pepperoni', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142338637.jpg', CAST(0x0000A5D800ED352E AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (121, N' Spicy Meat', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142411545.jpg', CAST(0x0000A5D800ED5BAB AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (122, N'Salmai', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142446700.jpg', CAST(0x0000A5D800ED84E8 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (123, N'Cajun Chicken', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142533869.jpg', CAST(0x0000A5D800EDBC16 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (124, N'BBQ Chicken Fillet', N'toppings', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142611809.jpg', CAST(0x0000A5D800EDE88F AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (125, N' Doner', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142650222.jpg', CAST(0x0000A5D800EE1590 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (126, N'Meatballs', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142825102.jpg', CAST(0x0000A5D800EE84C6 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (127, N' Steak(fresh from Grill)', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329142926578.jpg', CAST(0x0000A5D800EECCCB AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+INSERT [dbo].[tbl_Product] ([id], [Title], [Description], [Category], [Type], [Status], [ImgURL], [OnDate], [Price], [Dip]) VALUES (128, N'Tuna Chunks', N'topping', 7, N'CUSTOMISE', N'ACTIVE', N'~/DataImages/Product/item_0_20160329143009281.jpg', CAST(0x0000A5D800EEFED5 AS DateTime), CAST(0.70 AS Decimal(18, 2)), 0)
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Product] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Tbl_Registration] ON 
+
+GO
+INSERT [dbo].[Tbl_Registration] ([id], [Fname], [Lname], [EmailID], [Password], [ContactNo], [UserType], [DeliveryAddress], [Country], [Pincode], [Phone], [Status], [OnDate]) VALUES (1, N'Chumki', N'Bairagya', N'admin@Papaspizza.com', N'12345', N'45665464', N'ADMIN', NULL, NULL, NULL, NULL, N'Active', CAST(0x0000A5B000E00302 AS DateTime))
+GO
+INSERT [dbo].[Tbl_Registration] ([id], [Fname], [Lname], [EmailID], [Password], [ContactNo], [UserType], [DeliveryAddress], [Country], [Pincode], [Phone], [Status], [OnDate]) VALUES (10012, N'gfhgf', N'hgg', N'gfh@fgf', NULL, N'43543546', N'CUSTOMER', N'hg', N'gh', N'5', NULL, NULL, CAST(0x0000A5D800A6BE19 AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Tbl_Registration] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Size] ON 
+
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (1, N'Reg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (2, N'Lrg', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (3, N'Wrap', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (4, N'Naan', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (5, N'1/4lb', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (6, N'1/2lb', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (17, N'Single', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (18, N'Two', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (19, N'Strawberry', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (20, N'Banana', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (21, N'Chocolate', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (22, N'Coke', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (23, N'Diet Coke', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (24, N'Cherry Coke', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (25, N'7 Up', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (26, N'Pepsi', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (27, N'Fanta', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (28, N'Can', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (29, N'Bottle', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (7, N'Regular Crust 10"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (8, N'Regular Crust 12"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (9, N'Regular Crust 14"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (10, N'Regular Crust 16"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (11, N'Deep Pan 10"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (12, N'Deep Pan 12"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (13, N'Deep Pan 14"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (14, N'Deep Pan 16"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (15, N'10"', N'ACTIVE')
+GO
+INSERT [dbo].[tbl_Size] ([id], [Size], [Status]) VALUES (16, N'12"', N'ACTIVE')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_Size] OFF
+GO
+ALTER TABLE [dbo].[tbl_Cart] ADD  CONSTRAINT [DF_tbl_Cart_Qty]  DEFAULT ((1)) FOR [Qty]
+GO
+ALTER TABLE [dbo].[tbl_Cart] ADD  CONSTRAINT [DF_tbl_Cart_OrderStatus]  DEFAULT ('PENDING') FOR [OrderStatus]
+GO
+ALTER TABLE [dbo].[tbl_Cart] ADD  CONSTRAINT [DF_tbl_Cart_PaymentStatus]  DEFAULT ('PENDING') FOR [PaymentStatus]
+GO
+ALTER TABLE [dbo].[tbl_Cart] ADD  CONSTRAINT [DF_tbl_Cart_OnDate]  DEFAULT (getdate()) FOR [OnDate]
+GO
+ALTER TABLE [dbo].[Tbl_Fr_Product] ADD  CONSTRAINT [DF_Tbl_Fr_Product_onDate]  DEFAULT (getdate()) FOR [onDate]
+GO
+ALTER TABLE [dbo].[tbl_Menu] ADD  CONSTRAINT [DF_tbl_Menu_OnDate]  DEFAULT (getdate()) FOR [OnDate]
+GO
+ALTER TABLE [dbo].[tbl_Product] ADD  CONSTRAINT [DF_tbl_Product_OnDate]  DEFAULT (getdate()) FOR [OnDate]
+GO
+ALTER TABLE [dbo].[Tbl_Registration] ADD  CONSTRAINT [DF_Tbl_Registration_OnDate]  DEFAULT (getdate()) FOR [OnDate]
+GO

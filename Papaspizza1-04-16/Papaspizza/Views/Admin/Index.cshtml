@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Admin Home";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Dashboard1"] = "class=" + "active";
+    TempData["PageTitle"] = "Dashboard";
+}
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<!--BEGIN CONTENT-->
+<div class="page-content">
+    <div id="tab-general">
+        <img src="~/images/logo.png" />
+        <h1 style="font-size: 62px; font-weight: 400; padding-left: 160px; padding-top: 82px;">Welcome PapasPizza</h1>
+    </div>
+</div>
+<!--END CONTENT-->
+
+@section scripts{
+    <script src="/admin_assets/vendors/intro.js/intro.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.categories.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.pie.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.tooltip.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.resize.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.stack.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.spline.js"></script>
+    <script src="/admin_assets/vendors/calendar/zabuto_calendar.min.js"></script>
+    <script src="/admin_assets/vendors/sco.message/sco.message.js"></script>
+    <script src="/admin_assets/vendors/intro.js/intro.js"></script>
+    <script src="/admin_assets/js/index.js"></script>
+
+}

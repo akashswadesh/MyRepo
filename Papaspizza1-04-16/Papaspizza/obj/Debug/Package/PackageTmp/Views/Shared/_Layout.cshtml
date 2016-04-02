@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>:- Papas Pizza -: @ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" media="screen">
+
+    <!-- REVOLUTION BANNER CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="~/css/fullwidth.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.bxslider.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="~/css/responsive.css" media="screen">
+
+    <!-- Used Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body class="boxed">
+
+    <!-- Container -->
+    <div class="top-line">
+        <div class="nocontainer">
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="container" class="container custom-indexp">
+        <div class="col-md-12">
+
+
+            <!-- Header================================================== -->
+            <header class="clearfix">
+                <!-- end topline -->
+                <div class="logo-area col-md-3"><a href="@Url.Action("Index","Home")"><img class="img-responsive" src="/images/logo.png" alt=""></a></div>
+                <div class="col-md-4 col-md-offset-1 mytitle">
+                    <h4 class="mt5 mb5">Delivery Check</h4>
+                    <form id="search-form_3">
+                        <input type="text" class="search_3" placeholder="Post Code" id="Post" />
+                        <input type="submit" class="submit_3" value="Check" id="Check" onclick="myFunction()" />
+                    </form>
+                </div>
+                <div class="col-md-4" style="text-align:right">
+                    <p><b style="">0151 493 9996</b></p>
+                    <p>34 Molyneux Dr, Prescot L35 5DY</p>
+                    <p>Email:<a href="mailto:info@papaspizzaprescot.co.uk">info@papaspizzaprescot.co.uk</a></p>
+
+                </div>
+                <!-- End Upper-header -->
+                <div class="clearfix"></div>
+                <div class="nocontainer mt20">
+                    <!-- Navigation -->
+                    <nav id="nav">
+                        <ul id="navlist" class="sf-menu clearfix">
+                            @foreach (Papaspizza.Models.Property i in ViewBag.CategoryList)
+                            {
+                                <li><a href="/Product/Index/@i.Category">@i.Category</a></li>
+                            }
+                            
+                        </ul>
+                    </nav>
+                    <div class="nav-border"></div>
+                    <!-- Navigation -->
+                </div>
+            </header>
+            <!-- End Header -->
+            @RenderBody()
+
+            <div class="col-md-3 mt20 CartDesign">
+                <div class="row">
+                    
+                    <p style="text-align:center;margin-top:6px"><b>Your Order</b></p>
+                    <hr />                   
+                </div>
+                <div class="col-md-12" id="order" style="display:none"><img src="~/images/order.gif" style="height:280px"></div>
+                    <div class="col-md-12" id="ordertake">
+                        <table style="padding-left:4px;">
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th style="width:25px;">&nbsp;</th>
+                            </tr>
+                            @foreach (Papaspizza.Models.Property i in ViewBag.CartItemList)
+                            {
+                                int hm = 1;
+                                foreach (Papaspizza.Models.Property J in ViewBag.CartCusList)
+                                {
+                                    if (i.InstanceID == J.InstanceID)
+                                    {
+                                        if (hm == 1)
+                                        {
+                                            <tr>
+                                                <td>@J.Qty * @J.Title (@J.Size)</td>
+                                              @if (J.Price == "0.00") {<td></td> }else{ <td class="hm_price">£@J.Price</td>}
+                                                <td><a href="/Cart/Remove/@J.InstanceID" class="pull-right "><i style="font-size: 25px;margin: -6px 8px;" class="fa fa-times-circle"></i></a></td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td>@J.Title</td>
+                                               @if (J.Price == "0.00") { <td></td> }else{<td class="hm_price">£@J.Price</td>}
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        }
+                                        hm++;
+                                    }
+                                }
+                                <tr>
+                                    <td style="border-top:1px solid #eee;" colspan="3">&nbsp;</td>
+                                </tr>
+
+                            }
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td></td>
+                                <td><b id="hm_tot_price_cart">£ 00</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="padding-top:10px;">
+                                    <a href="/Cart/CheckOut" class="button-red " id="CheckOut" style="padding: 4px;border-radius: 9px;display: inline;color: #fff;">CheckOut</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <a href="/Product/Items" class="button-green" style="padding:7px;border-radius:20px;margin-left:100px">SPECIAL OFFERS</a>
+                </div>
+
+            <!-- End SLider -->
+
+            <div class="clearfix"></div>
+          
+            <!-- footer
+                      ================================================== -->
+            <footer>
+                <div class="nocontainer">
+                </div>
+                <div class="clearfix"></div>
+                <div class="nocontainer">
+                    <div class="col-md-12 text-center">
+                        &copy; 2016 Papas Pizza Prescot. Designed By gowebbi.com
+                    </div>
+
+                </div>
+            </footer>
+            <!-- End footer -->
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.superfish.js"></script>
+    <script type="text/javascript" src="~/js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="~/js/jquery.fancybox-1.3.4.pack.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/js/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins-scroll.html"></script>
+    <script type="text/javascript" src="~/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.imagesloaded.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.appear.js"></script>
+    <script type="text/javascript" src="~/js/jquery.countTo.js"></script>
+    <script src="~/js/jquery.parallax.html"></script>
+    <!-- jQuery KenBurn Slider  -->
+    <script type="text/javascript" src="~/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/js/script.js"></script>
+
+    <!--
+        ##############################
+         - ACTIVATE THE BANNER HERE -
+        ##############################
+        -->
+    <script type="text/javascript">
+
+        var tpj = jQuery;
+        tpj.noConflict();
+
+        tpj(document).ready(function () {
+
+            if (tpj.fn.cssOriginal != undefined)
+                tpj.fn.css = tpj.fn.cssOriginal;
+
+            var api = tpj('.fullwidthbanner').revolution(
+				{
+				    delay: 8000,
+				    startwidth: 1170,
+				    startheight: 570,
+
+				    onHoverStop: "off",						// Stop Banner Timet at Hover on Slide on/off
+
+				    thumbWidth: 100,							// Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+				    thumbHeight: 50,
+				    thumbAmount: 3,
+
+				    hideThumbs: 0,
+				    navigationType: "bullet",				// bullet, thumb, none
+				    navigationArrows: "solo",				// nexttobullets, solo (old name verticalcentered), none
+
+				    navigationStyle: "round",				// round,square,navbar,round-old,square-old,navbar-old, or any from the list in the docu (choose between 50+ different item), custom
+
+
+				    navigationHAlign: "center",				// Vertical Align top,center,bottom
+				    navigationVAlign: "bottom",					// Horizontal Align left,center,right
+				    navigationHOffset: 30,
+				    navigationVOffset: 40,
+
+				    soloArrowLeftHalign: "left",
+				    soloArrowLeftValign: "center",
+				    soloArrowLeftHOffset: 40,
+				    soloArrowLeftVOffset: 0,
+
+				    soloArrowRightHalign: "right",
+				    soloArrowRightValign: "center",
+				    soloArrowRightHOffset: 40,
+				    soloArrowRightVOffset: 0,
+
+				    touchenabled: "on",						// Enable Swipe Function : on/off
+
+
+				    stopAtSlide: -1,							// Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+				    stopAfterLoops: -1,						// Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+				    hideCaptionAtLimit: 0,					// It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+				    hideAllCaptionAtLilmit: 0,				// Hide all The Captions if Width of Browser is less then this value
+				    hideSliderAtLimit: 0,					// Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+
+				    fullWidth: "on",
+
+				    shadow: 1								//0 = no Shadow, 1,2,3 = 3 Different Art of Shadows -  (No Shadow in Fullwidth Version !)
+
+				});
+
+
+            // TO HIDE THE ARROWS SEPERATLY FROM THE BULLETS, SOME TRICK HERE:
+            // YOU CAN REMOVE IT FROM HERE TILL THE END OF THIS SECTION IF YOU DONT NEED THIS !
+            api.bind("revolution.slide.onloaded", function (e) {
+
+
+                jQuery('.tparrows').each(function () {
+                    var arrows = jQuery(this);
+
+                    var timer = setInterval(function () {
+
+                        if (arrows.css('opacity') == 1 && !jQuery('.tp-simpleresponsive').hasClass("mouseisover"))
+                            arrows.fadeOut(300);
+                    }, 3000);
+                })
+
+                jQuery('.tp-simpleresponsive, .tparrows').hover(function () {
+                    jQuery('.tp-simpleresponsive').addClass("mouseisover");
+                    jQuery('body').find('.tparrows').each(function () {
+                        jQuery(this).fadeIn(300);
+                    });
+                }, function () {
+                    if (!jQuery(this).hasClass("tparrows"))
+                        jQuery('.tp-simpleresponsive').removeClass("mouseisover");
+                })
+            });
+            // END OF THE SECTION, HIDE MY ARROWS SEPERATLY FROM THE BULLETS
+        });
+    </script>
+
+
+    <!-- include jQuery + carouFredSel plugin -->
+    <script type="text/javascript" src="~/js/jquery.carouFredSel.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#Check").click(function (e) {
+                e.preventDefault();
+                // alert("I am in");
+                //var CompanyId = getUrlParameter('Key');
+                var valu = $("#Post").val();
+                //alert(valu);
+                $.ajax({
+                    type: "POST",
+                    url: "/Postcode/Check",
+                    data: { value: valu },
+                    success: function (result) {
+
+                        alert(result);
+                    }
+                });
+            });
+
+            var tot_price = "0.00";
+            var itm_price = "0.00";
+            $('.hm_price').each(function () {
+                itm_price = $(this).html();
+                itm_price = itm_price.replace('£', '');
+                tot_price = parseFloat(tot_price) + parseFloat(itm_price);
+                // tot_price = Math.round(tot_price, 3);
+                tot_price =tot_price.toFixed(2);
+            });
+            $('#hm_tot_price_cart').html('£' + tot_price);
+            if (tot_price == "0.00") {
+                $('#CheckOut').css('display', 'none');
+                $('#ordertake').css('display', 'none');
+                $('#order').css('display', 'inline');
+            }
+        });
+
+
+
+
+    </script>
+    <script>
+
+        //function myCall() {
+
+        $(document).ready(function () {
+            var UID = "";
+            $('input[type=checkbox]')
+            $(".addtocart").click(function (e) {
+                UID = $(this).attr('data-add-id');
+                var menu_top_set = "";
+                var itemData = $('.SL_Size_' + UID + ' #Size').val();
+               // alert(itemData);
+                var itemArray = itemData.split('|');
+
+                var property = {};                
+                property.ProductName = $('#Prdname_' + UID).val();
+                property.Description = $('#Desc_' + UID).val();
+                property.Qty = $('#Qty_' + UID).val();
+                property.Size = itemArray[0];
+                property.Price = itemArray[1];
+                property.Message =$('.Com_' + UID + ' #Message').val();
+                $(".topinscheck_" + UID).each(function () {
+                    if ($(this).prop('checked') && $(this).is(':disabled') == false) {
+                        var name = $(this).attr("data-item-name");
+                        var pri = itemArray[0].replace('"', '');                       
+                        if (pri == "Regular Crust 12" || pri == "Deep Pan 12" || pri == "12") {
+                            var price = "0.80";
+                        }
+                      else
+                        if (pri == "Regular Crust 14" || pri == "Deep Pan 14") {
+                            var price = "0.90";
+                        }
+                       else if (pri == "Regular Crust 16" || pri == "Deep Pan 16") {
+                            var price = "1.00";
+                        }
+                        else {
+                            var price = $(this).attr("data-item-price");
+                        }
+                        menu_top_set = menu_top_set + name + '|' + price + ',';
+                    }
+                    // alert(menu_top_set);
+
+                });
+                property.Item_Offered = menu_top_set;
+                property.Title = "";
+                $('.shop-content_' + UID + ' .dip-select').each(function () {
+                    property.Title = property.Title + $(this).find('option:selected').text() + ",";
+                });
+              
+                var d = new Date();
+                var GID = d.getTime();
+                property.InstanceID = GID;
+
+                $.ajax({
+                    url: '/Cart/addtoCart',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ prop: property }),
+                    cache: false,
+                    success: function (result) {
+                        alert(result);
+                        window.location.reload();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Error:' + thrownError);
+                    }
+                });
+
+
+            });
+        });
+
+
+
+
+    </script>
+
+
+    <script>
+
+        //function myCall() {
+
+        $(document).ready(function () {
+            $("#guest_btn").click(function (e) {
+                e.preventDefault();
+                var fname = $("#firstname").val();
+                var lname = $("#lastname").val();
+                var emailid = $("#email").val();
+                var phno = $("#Phone").val();
+                var State = $("#State").val();
+                var zip = $("#Postcode").val();
+                var Adress = $("#Daddress").val();
+
+                //alert("start");
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Cart/GuestCheckout/',
+                    data: { fname: fname, lname: lname, emailid: emailid, phno: phno, State: State, zip: zip, Adress: Adress },
+                    success: function (result) {
+
+                        $('#hiddenform').submit();
+
+                    }
+                });
+            });
+        });
+
+
+
+
+    </script>
+    @* //////////////////////CART PROCESS///////////////////////////*@
+
+
+    @*<script type="text/javascript">
+            jQuery(window).load(function () {
+
+                //alert("here");
+                //var selected = $('#results').val();
+                jQuery.post('/Cart/Header', null, function (data) {
+                    var dat = data;
+                    alert(data);
+                    jQuery("#Num").html(dat.split('!')[0]);
+                    jQuery("#TotalAmt").html(dat.split('!')[1]);
+                    // $("#category").html(dat);
+
+                });
+
+            });
+        </script>*@
+
+    @* //////////////////////CART PROCESS///////////////////////////*@
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

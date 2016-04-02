@@ -1,0 +1,185 @@
+﻿@using Papaspizza.Helpers;
+@using Papaspizza.Models;
+@{
+    HttpCookie loginCookie = Request.Cookies["login_cookie"];
+    EncryptDecrypt enc = new EncryptDecrypt();
+    Datalayer dl = new Datalayer();
+}
+
+
+
+
+<nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
+    <div class="sidebar-collapse menu-scroll">
+        <ul id="side-menu" class="nav">
+            <li class="user-panel">
+              
+                <div class="info">
+                    @*<p>@loginCookie.Values["UserFullName"]</p>*@
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/Settings" data-hover="tooltip" title="Profile"><i class="fa fa-user"></i></a></li>
+                        @*<li><a href="#" data-hover="tooltip" title="Mail"><i class="fa fa-envelope"></i></a></li>*@
+                        <li>
+                            <a href="/Settings" data-hover="tooltip" title="Setting" data-toggle="modal" data-target="#modal-config">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <li><a href="/Account/Logout" data-hover="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li @TempData["Dashboard1"]>
+                <a href="/Dashboard">
+                    <i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-orange"></div>
+                    </i><span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            @if (loginCookie["UserType"] == "ADMIN")
+            {
+                <li @TempData["Content1"]>
+                    <a href="#">
+                        <i class="fa fa-cogs fa-fw">
+                            <div class="icon-bg bg-pink"></div>
+                        </i>
+                        <span class="menu-title">Setting</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["Category"]>
+                            <a href="/Product/Category">
+                                <span class="submenu-title">Add/Edit Category</span>
+                            </a>
+                        </li>          
+                        <li @TempData["SubCategory"]>
+                            <a href="/Product/Size">
+                                <span class="submenu-title">Add/Edit Size</span>
+                            </a>
+                        </li>  
+                    </ul>
+                </li>
+                <li @TempData["Product1"]>
+                    <a href="#">
+                        <i class="fa fa-list-alt fa-fw">
+                            <div class="icon-bg bg-green"></div>
+                        </i>
+                        <span class="menu-title">Product</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["Addproduct1"]>
+                            <a href="/Product/Add">
+                                <span class="submenu-title">Add</span>
+                            </a>
+                        </li>
+                        <li @TempData["AddproductList1"]>
+                            <a href="/Product/List">
+                                <span class="submenu-title">List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li @TempData["Customise1"]>
+                    <a href="#">
+                        <i class="fa fa-list-alt fa-fw">
+                            <div class="icon-bg bg-green"></div>
+                        </i>
+                        <span class="menu-title">Customise Product</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["Addcus1"]>
+                            <a href="/Product/Customise">
+                                <span class="submenu-title">Add</span>
+                            </a>
+                        </li>
+                        <li @TempData["AddcusList1"]>
+                            <a href="/Product/CusList">
+                                <span class="submenu-title">List</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li @TempData["Menu"]>
+                    <a href="#">
+                        <i class="fa fa-list-alt fa-fw">
+                            <div class="icon-bg bg-green"></div>
+                        </i>
+                        <span class="menu-title">Special Product</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["Addmenu1"]>
+                            <a href="/Product/Special">
+                                <span class="submenu-title">Add</span>
+                            </a>
+                        </li>
+                        <li @TempData["menuList1"]>
+                            <a href="/Product/SpecialList">
+                                <span class="submenu-title">List</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                
+                <li @TempData["Free"]>
+                    <a href="#">
+                        <i class="fa fa-list-alt fa-fw">
+                            <div class="icon-bg bg-green"></div>
+                        </i>
+                        <span class="menu-title">Free Product</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["AddFree1"]>
+                            <a href="/Product/Free">
+                                <span class="submenu-title">Add</span>
+                            </a>
+                        </li>
+                        <li @TempData["FreeList1"]>
+                            <a href="/Product/FreeList">
+                                <span class="submenu-title">List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li @TempData["Postcode1"]>
+                    <a href="#">
+                        <i class="fa fa-cogs fa-fw">
+                            <div class="icon-bg bg-pink"></div>
+                        </i>
+                        <span class="menu-title">Postcode To Deliver</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["Postcode11"]>
+                            <a href="/Postcode">
+                                <span class="submenu-title">Add/Edit Postcode</span>
+                            </a>
+                        </li>  
+                    </ul>
+                </li>
+            
+               <li @TempData["OrderList"]>
+                    <a href="#">
+                        <i class="fa fa-cogs fa-car">
+                            <div class="icon-bg bg-pink"></div>
+                        </i>
+                        <span class="menu-title">OrderList</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li @TempData["OrderList1"]>
+                            <a href="/Cart/Order">
+                                <span class="submenu-title">View/Edit  OrderList</span>
+                            </a>
+                        </li>  
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

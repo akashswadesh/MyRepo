@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Product Customise List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Customise1"] = "class=" + "active selected";
+    TempData["AddcusList1"] = "visible";
+
+}
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet box panel panel-yellow">
+                <div class="panel-heading">
+                   Customise Product List
+                </div>
+                <div class="portlet-body">
+                    <div class="row mbm">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table id="table_id" class="table table-hover table-striped table-bordered tablesorter">
+                                    <thead>
+
+                                        <tr>
+
+                                            <th width="9%">
+                                                ID
+                                            </th>
+                                            <th>
+                                                Product
+                                            </th>
+                                            <th>
+                                                Customise Item
+                                            </th>                                       
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Papaspizza.Models.Property i in ViewBag.ProductList)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="/Product/Customise/@i.id" class="btn btn-warning btn-xs">
+                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                                <td>@i.Title</td>
+                                                <td>@i.ProductName</td>
+                                                 </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="/admin_assets/vendors/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="/admin_assets/vendors/DataTables/media/js/dataTables.bootstrap.js"></script>
+    <script src="/admin_assets/vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/admin_assets/js/table-datatables.js"></script>
+
+}
