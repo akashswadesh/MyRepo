@@ -1,4 +1,3 @@
-//=========Alter Changes==========
 USE [PapasPizza]
 GO
 ALTER TABLE [dbo].[Tbl_Registration] DROP CONSTRAINT [DF_Tbl_Registration_OnDate]
