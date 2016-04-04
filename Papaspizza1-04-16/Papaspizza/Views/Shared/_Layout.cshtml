@@ -29,14 +29,14 @@
         </div>
     </div>
     <div id="container" class="container custom-indexp">
-        <div class="col-md-12">
+        <div class="row">
 
 
             <!-- Header================================================== -->
             <header class="clearfix">
                 <!-- end topline -->
                 <div class="logo-area col-md-3"><a href="@Url.Action("Index","Home")"><img class="img-responsive" src="/images/logo.png" alt=""></a></div>
-                <div class="col-md-4 col-md-offset-1 mytitle">
+                <div class="col-md-4 col-md-offset-1 mytitle col-xs-12">
                     <h4 class="mt5 mb5">Delivery Check</h4>
                     <form id="search-form_3">
                         <input type="text" class="search_3" placeholder="Post Code" id="Post" />
@@ -67,67 +67,86 @@
                 </div>
             </header>
             <!-- End Header -->
-            @RenderBody()
-
-            <div class="col-md-3 mt20 CartDesign">
-                <div class="row">
-                    
-                    <p style="text-align:center;margin-top:6px"><b>Your Order</b></p>
-                    <hr />                   
-                </div>
-                <div class="col-md-12" id="order" style="display:none"><img src="~/images/order.gif" style="height:280px"></div>
-                    <div class="col-md-12" id="ordertake">
-                        <table style="padding-left:4px;">
-                            <tr>
-                                <th>Item</th>
-                                <th>Price</th>
-                                <th style="width:25px;">&nbsp;</th>
-                            </tr>
-                            @foreach (Papaspizza.Models.Property i in ViewBag.CartItemList)
-                            {
-                                int hm = 1;
-                                foreach (Papaspizza.Models.Property J in ViewBag.CartCusList)
+            <div class="container">
+                <div class="col-md-3 mt10 col-xs-5 text-center plo desk-po">
+                    <div class=" CartDesign ">
+                        <div class="">
+                            <p class="text-center mt10"><b>Your Order</b></p>
+                            <hr />
+                        </div>
+                        <div class="col-md-12 col-xs-12" id="order" style="display:none">
+                            <h6 id="mob-header" style="display:none;">Empty Cart</h6>
+                            <img src="~/images/order.gif" class="img-responsive" id="img-desktop">
+                        </div>
+                        <div class="col-md-12" id="ordertake">
+                            <table style="padding-left:4px;">
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                    <th style="width:25px;">&nbsp;</th>
+                                </tr>
+                                @foreach (Papaspizza.Models.Property i in ViewBag.CartItemList)
                                 {
-                                    if (i.InstanceID == J.InstanceID)
+                                    int hm = 1;
+                                    foreach (Papaspizza.Models.Property J in ViewBag.CartCusList)
                                     {
-                                        if (hm == 1)
+                                        if (i.InstanceID == J.InstanceID)
                                         {
-                                            <tr>
-                                                <td>@J.Qty * @J.Title (@J.Size)</td>
-                                              @if (J.Price == "0.00") {<td></td> }else{ <td class="hm_price">£@J.Price</td>}
-                                                <td><a href="/Cart/Remove/@J.InstanceID" class="pull-right "><i style="font-size: 25px;margin: -6px 8px;" class="fa fa-times-circle"></i></a></td>
-                                            </tr>
+                                            if (hm == 1)
+                                            {
+                                                <tr>
+                                                    <td>@J.Qty * @J.Title (@J.Size)</td>
+                                                    @if (J.Price == "0.00")
+                                                    {
+                                                        <td></td> }
+                                                    else
+                                                    {
+                                                        <td class="hm_price">£@J.Price</td>}
+                                                    <td><a href="/Cart/Remove/@J.InstanceID" class="pull-right "><i style="font-size: 25px;margin: -6px 8px;" class="fa fa-times-circle"></i></a></td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td>@J.Title</td>
+                                                    @if (J.Price == "0.00")
+                                                    {
+                                                        <td></td> }
+                                                    else
+                                                    {
+                                                        <td class="hm_price">£@J.Price</td>}
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            }
+                                            hm++;
                                         }
-                                        else
-                                        {
-                                            <tr>
-                                                <td>@J.Title</td>
-                                               @if (J.Price == "0.00") { <td></td> }else{<td class="hm_price">£@J.Price</td>}
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        }
-                                        hm++;
                                     }
+                                    <tr>
+                                        <td style="border-top:1px solid #eee;" colspan="3">&nbsp;</td>
+                                    </tr>
+
                                 }
                                 <tr>
-                                    <td style="border-top:1px solid #eee;" colspan="3">&nbsp;</td>
+                                    <td><b>Total</b></td>
+                                    <td></td>
+                                    <td><b id="hm_tot_price_cart">£ 00</b></td>
                                 </tr>
-
-                            }
-                            <tr>
-                                <td><b>Total</b></td>
-                                <td></td>
-                                <td><b id="hm_tot_price_cart">£ 00</b></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="padding-top:10px;">
-                                    <a href="/Cart/CheckOut" class="button-red " id="CheckOut" style="padding: 4px;border-radius: 9px;display: inline;color: #fff;">CheckOut</a>
-                                </td>
-                            </tr>
-                        </table>
+                                <tr>
+                                    <td colspan="3" style="padding-top:10px;">
+                                        <a href="/Cart/CheckOut" class="button-red home-btn" id="CheckOut">CheckOut</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="/Product/Items" class="button-green home-btn">SPECIAL OFFERS</a>
                     </div>
-                <a href="/Product/Items" class="button-green" style="padding:7px;border-radius:20px;margin-left:100px">SPECIAL OFFERS</a>
+
                 </div>
+
+
+                @RenderBody()
+            </div>
+            
 
             <!-- End SLider -->
 

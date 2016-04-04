@@ -6,7 +6,7 @@
 }
 
 <div class="nocontainer">
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-12">
         <p><b>@TempData["Category"]</b></p>
        
         @foreach (Papaspizza.Models.Property i in ViewBag.ProductList)
@@ -126,6 +126,7 @@ else
             </div>
         }
        
+    </div>
     </div>
     <script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
     @section scripts{
